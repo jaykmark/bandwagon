@@ -2,7 +2,14 @@
 
 <div style="background-image:url({{band.photo_url}}) ;"id="band-banner">
 <h1>{{band.name}}</h1>
-</div>
 
+{%if invites%}
+<ul>
+    {% for invite in invites %}
+    <li>
+       <p>{{invite.artist.stage_name}} <a href="{%url '#' pk=invite.pk%}">Accept</a> <a href="{%url '#' pk=invite.pk%}">Decline</a> </p>
+    </li>
+</ul>
+{%endif%}
 
 
