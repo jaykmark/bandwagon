@@ -1,28 +1,37 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from django.core import serializers
-from .models import Artist, Band
+from .models import Artist, Band, BandMember, Invite
 
 from .forms import ArtistForm, BandForm
-
+from django.contrib.auth.decorators import login_required
 # -------------------  BAND ------------------- #
 
 # Detail
 
 def band_detail(req,pk):
     band = Band.objects.get(id=pk)
-    context = {"band":band}
+    invites =  Invite.objects.filter(band=pk)
+    members = BandMember.objects.filter(band=pk)
+    invites = filter(lambda invite: invite.sender != True,invites)
+    context = {"band":band,"invites":invites,"members":members}
     return render(req,'band_detail.html',context)
 
-# List
+
+def artist_detail(request,pk):
+    artist = Artist.objects.get(id=pk)
+    context = {"artist":artist}
+    return render(request, 'artist_detail.html', context)
+
+# -------- LISTS ---------- #
 
 def band_list(request):
     bands = Band.artist.all()
     context = {"bands":bands}
-    return render(request, 'artist_list.html', context)
+    return render(request, 'band_list.html', context)
 
 # Create
-
+@login_required
 def band_create(request):
     if request.method == 'POST':
         form = BandForm(request.POST)
@@ -89,6 +98,7 @@ def artist_create(request):
 
 # Update
 
+
 def artist_edit(request, pk):
     artist = Artist.objects.get(id=pk)
     if request.method == 'POST':
@@ -106,3 +116,21 @@ def artist_edit(request, pk):
 def artist_delete(request, pk):
     Artist.objects.get(id=pk).delete()
     return redirect('artist_list')
+
+# -------------------------------------------- INVITES
+@login_required
+def add_bandmember(req,invite_pk):
+    invite = Invite.objects.get(id=invite_pk)
+    member = BandMember()
+    member.artist = invite.artist
+    member.band = invite.band
+    member.save()
+    invite.delete()
+    return redirect('band_detail',pk=invite.band.id)
+    
+@login_required
+def decline_invite(req,invite_pk):
+     invite = Invite.objects.get(id=invite_pk)
+     band_id = invite.band.id
+     invite.delete()
+     return redirect('band_detail',pk=band_id)

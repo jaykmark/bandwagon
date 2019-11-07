@@ -1,5 +1,5 @@
-{%extends 'base.html'%}
-{%block content%}
+
+
 <div style="background-image:url({{band.photo_url}}) ;"id="band-banner">
 <h1>{{band.name}}</h1>
 </div>
@@ -7,7 +7,7 @@
 <ul>
     {% for invite in invites %}
     <li>
-       <p>{{invite.artist.stage_name}} <a href="#">Accept</a> <a href="#">Decline</a> </p>
+       <p>{{invite.artist.stage_name}} <a href="{%url 'add_bandmember' invite_pk=invite.pk %}">Accept</a> <a href="{%url 'decline_invite' invite_pk=invite.pk %}">Decline</a> </p>
     </li>
     {%endfor%}
 </ul>
@@ -23,4 +23,4 @@
 </ul>
 {%endif%}
 
-{%endblock%}
+
