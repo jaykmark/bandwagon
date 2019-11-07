@@ -9,4 +9,6 @@ urlpatterns = [
     path('band/<int:pk>/edit/', views.band_edit, name = 'band_edit'),
     path('artist/<int:pk>/delete/', views.artist_delete, name = 'artist_delete'),
     path('band/<int:pk>/delete/', views.band_delete, name = 'band_delete')
+    path('artist/new', views.artist_detail, name = 'artist_create'),
+    path('band/new', views.band_detail, name = 'band_create')
 ]
