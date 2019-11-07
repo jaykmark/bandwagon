@@ -2,13 +2,13 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('band/<int:pk>/', views.band_detail, name = 'band_detail'),
-    path('artist/<int:pk>/', views.artist_detail, name = 'artist_detail'),
+    path('bands/<int:pk>/', views.band_detail, name = 'band_detail'),
+    path('artists/<int:pk>/', views.artist_detail, name = 'artist_detail'),
     path('', views.artist_list, name = 'artist_list'),
-    path('artist/<int:pk>/edit/', views.artist_edit, name = 'artist_edit'),
-    path('band/<int:pk>/edit/', views.band_edit, name = 'band_edit'),
-    path('artist/<int:pk>/delete/', views.artist_delete, name = 'artist_delete'),
-    path('band/<int:pk>/delete/', views.band_delete, name = 'band_delete')
-    path('artist/new', views.artist_detail, name = 'artist_create'),
-    path('band/new', views.band_detail, name = 'band_create')
+    path('artists/<int:pk>/edit/', views.artist_edit, name = 'artist_edit'),
+    path('bands/<int:pk>/edit/', views.band_edit, name = 'band_edit'),
+    path('artists/<int:pk>/delete/', views.artist_delete, name = 'artist_delete'),
+    path('bands/<int:pk>/delete/', views.band_delete, name = 'band_delete'),
+    path('artists/new', views.artist_create, name = 'artist_create'),
+    path('bands/new', views.band_create, name = 'band_create'),
 ]

@@ -3,6 +3,8 @@ from django.http import HttpResponse, JsonResponse
 from django.core import serializers
 from .models import Artist, Band
 
+from .forms import ArtistForm, BandForm
+
 # ------- DETAILS --------- #
 
 def band_detail(req,pk):
@@ -49,7 +51,7 @@ def artist_create(request):
             artist = form.save(commit = False)
             artist.user = request.user
             artist.save()
-            return redirect('artist_detail.html', pk=artist.pk)
+            return redirect('artist_detail', pk=artist.pk)
     else:
         form = ArtistForm()
         context = {'form':form, 'header':"Add New Artist"}
@@ -69,16 +71,16 @@ def band_edit(request, pk, band_pk):
         context = {'form':form, 'header':f"Edit {band.name}"}
         return render(request, 'band_form.html', context)
 
-def artist_edit(request, pk, artist_pk):
-    artist = Artist.objects.get(id=artist_pk)
+def artist_edit(request, pk):
+    artist = Artist.objects.get(id=pk)
     if request.method == 'POST':
         form = ArtistForm(request.POST, instance=artist)
         if form.is_valid():
             artist = form.save()
-            return redirect('artist_detail.html', pk=artist.pk)
+            return redirect('artist_detail', pk=artist.pk)
     else:
         form = ArtistForm(instance=artist)
-        context = {'form':form, 'header':f"Edit {Artist.stage_name}"}
+        context = {'form':form, 'header':f"Edit {artist.stage_name}"}
         return render(request, 'artist_form.html', context)
         
 # -------- DELETE -------- #

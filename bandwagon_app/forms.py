@@ -12,7 +12,7 @@ class BandForm(forms.ModelForm):
 
     class Meta:
         model = Band
-        field = ('name','description','photo_url','zip_code','desired_number')
+        fields = ('name','description','photo_url','zip_code','desired_number')
 
 
 
