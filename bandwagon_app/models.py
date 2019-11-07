@@ -43,4 +43,5 @@ class Invite(models.Model):
   sender = models.BooleanField()
 
   def __str__(self):
-    return f'{self.band} : {self.artist} - {self.sender} confirmed = {self.confirmation}'
+    return f'{f"{self.artist.stage_name} --> {self.band.name}" if self.sender == True else f"{self.band.name} --> {self.artist.stage_name}"} confirmed = {self.confirmation}'
+

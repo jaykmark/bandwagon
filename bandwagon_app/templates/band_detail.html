@@ -1,1 +1,26 @@
-<h1> AHHHHHHHHHHHHHHHHHHHHHHHHH</h1>
+{%extends 'base.html'%}
+{%block content%}
+<div style="background-image:url({{band.photo_url}}) ;"id="band-banner">
+<h1>{{band.name}}</h1>
+</div>
+{%if invites%}
+<ul>
+    {% for invite in invites %}
+    <li>
+       <p>{{invite.artist.stage_name}} <a href="#">Accept</a> <a href="#">Decline</a> </p>
+    </li>
+    {%endfor%}
+</ul>
+{%endif%}
+{%if members%}
+<h2>Members</h2>
+<ul>
+    {% for member in members %}
+    <li>
+       <p>{{member.artist.stage_name}} <a href="#">Profile</a> </p>
+    </li>
+    {%endfor%}
+</ul>
+{%endif%}
+
+{%endblock%}
