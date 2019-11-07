@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="form-section">
+  <h2>{{header}}</h2>
+  
+  <form action="" method="POST" class="band-form">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit">GOT EEM</button>
+  </form>
+  
+  <p>You ain't a real one</p>
+  
+</section>
+
+{% endblock %}
+
