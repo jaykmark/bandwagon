@@ -87,8 +87,8 @@ def artist_edit(request, pk):
 
 def band_delete(request, pk, band_pk):
     Band.objects.get(id=band_pk).delete()
-    return redirect('band_list.html', pk=pk)
+    return redirect('band_list', pk=pk)
 
-def artist_delete(request, pk, artist_pk):
-    Artist.objects.get(id=artist_pk).delete()
-    return redirect('artist_list.html', pk=pk)
+def artist_delete(request, pk):
+    Artist.objects.get(id=pk).delete()
+    return redirect('artist_list')
