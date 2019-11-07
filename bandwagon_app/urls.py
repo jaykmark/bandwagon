@@ -11,4 +11,6 @@ urlpatterns = [
     path('bands/<int:pk>/delete/', views.band_delete, name = 'band_delete'),
     path('artists/new', views.artist_create, name = 'artist_create'),
     path('bands/new', views.band_create, name = 'band_create'),
+    path('api/v1/invite/<int:invite_pk>/confirm',views.add_bandmember,name='add_bandmember'),
+    path('api/v1/invite/<int:invite_pk>/decline',views.decline_invite,name='decline_invite')
 ]
