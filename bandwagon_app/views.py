@@ -11,10 +11,13 @@ from django.contrib.auth.decorators import login_required
 
 def band_detail(req,pk):
     band = Band.objects.get(id=pk)
+    admin = False
+    if band.owner.user == req.user:
+        admin = True
     invites =  Invite.objects.filter(band=pk)
     members = BandMember.objects.filter(band=pk)
-    invites = filter(lambda invite: invite.sender != True,invites)
-    context = {"band":band,"invites":invites,"members":members}
+    invites = filter(lambda invite: invite.sender == True,invites)
+    context = {"band":band,"invites":invites,"members":members,"admin":admin}
     return render(req,'band_detail.html',context)
 
 
@@ -122,7 +125,7 @@ def artist_delete(req, pk):
     Artist.objects.get(id=pk).delete()
     return redirect('artist_list')
 
-# -------------------------------------------- INVITES
+# -------------------------------------------- BandMembers and Invites
 @login_required
 def add_bandmember(req,invite_pk):
     invite = Invite.objects.get(id=invite_pk)
@@ -141,7 +144,18 @@ def decline_invite(req,invite_pk):
      return redirect('band_detail',pk=band_id)
 
 @login_required
-def createInvite(req,band_pk,sender):
-
+def create_invite(req,band_pk,sender):
+    invite = Invite()
+    invite.band = Band.objects.get(id=band_pk)
+    invite.artist = Artist.objects.get(id=req.user.id)
+    invite.sender = sender
+    invite.save()
+    return redirect('band_detail',pk=band_pk)
+@login_required
+def remove_bandmember(req,band_pk,artist_pk):
+    band_member = BandMember.objects.filter(band = band_pk)
+    band_member = band_member.filter(artist = artist_pk)
+    band_member.delete()
+    return redirect('band_detail',pk=band_pk)
 # Sender Property: True = Artist; False = Band
   
