@@ -103,6 +103,7 @@ def artist_list(req):
 
 # Create
 
+@login_required
 def artist_create(req):
     artist = Artist.objects.get(id=req.user.id)
     if req.method == 'POST':
