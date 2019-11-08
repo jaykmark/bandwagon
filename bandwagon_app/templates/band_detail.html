@@ -1,4 +1,6 @@
+{% extends 'base.html' %}
 
+{% block content %}
 
 <div style="background-image:url({{band.photo_url}}) ;"id="band-banner">
 <h1>{{band.name}}</h1>
@@ -24,6 +26,6 @@
     </li>
     {%endfor%}
 </ul>
-{%endif%}
+{% endif %}
 
-
+{% endblock %}
