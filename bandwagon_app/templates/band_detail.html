@@ -2,30 +2,45 @@
 
 {% block content %}
 
-<div style="background-image:url({{band.photo_url}}) ;"id="band-banner">
-<h1>{{band.name}}</h1>
+<div class="detail-banner">
+    <img src="{{band.photo_url}}" alt="">
 </div>
+<div class="container container-detail">
+    <h2 class="detail-header">{{band.name}}</h2>
+    
+    <p>{{band.description}}</p>
 
-<a href="{%url 'create_invite' band_pk=band.pk sender=True %}">Apply to Band</a>
+    {% if admin %}
+    <h2 class="detail-header">Invites</h2>
+    <ul>
+        {% for invite in invites %}
+        <li>
+        <h3>{{invite.artist.stage_name}}</h3>
+        <a href="#">Profile</a> |
+        <a href="{%url 'add_bandmember' invite_pk=invite.pk  %}">Accept</a> <a href="{%url 'decline_invite' invite_pk=invite.pk %}">Decline</a> </p>
+        </li>
+        {%endfor%}
+    </ul>
+    {% endif %}
 
-{%if admin%}
-<ul>
-    {% for invite in invites %}
-    <li>
-       <p>{{invite.artist.stage_name}} <a href="{%url 'add_bandmember' invite_pk=invite.pk  %}">Accept</a> <a href="{%url 'decline_invite' invite_pk=invite.pk %}">Decline</a> </p>
-    </li>
-    {%endfor%}
-</ul>
-{%endif%}
-{%if admin%}
-<h2>Members</h2>
-<ul>
-    {% for member in members %}
-    <li>
-       <p>{{member.artist.stage_name}} <a href="#">Profile</a> <a href="{% url 'remove_bandmember' band_pk=band.pk artist_pk=member.artist.pk%}">Remove</a> </p>
-    </li>
-    {%endfor%}
-</ul>
-{% endif %}
+    {% if not admin %}
+    <h2 class="detail-header">Looking For 2 Members</h2>
+    <div id="detail-apply-button"><a href="{%url 'create_invite' band_pk=band.pk sender=True %}" class="btn">APPLY TO JOIN</a></div>
+    {% endif %}
+
+    <h2 class="detail-header">Members</h2>
+    <ul>
+        {% for member in members %}
+        <li>
+            <h3>{{member.artist.stage_name}}</h3><a href="#">Profile</a>     
+            {% if admin %}
+                | <a href="{% url 'remove_bandmember' band_pk=band.pk artist_pk=member.artist.pk%}">Remove</a>
+            {% endif %}
+            
+        </li>
+        {% endfor %}
+    </ul>
+
+</div>
 
 {% endblock %}

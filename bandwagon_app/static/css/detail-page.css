@@ -1,0 +1,30 @@
+.detail-banner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  width: 100%;
+  height: 40vh;
+}
+
+.detail-banner img {
+  flex-shrink: 0;
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+  box-shadow: 3px 11px 20px -4px rgba(0,0,0,0.24);
+}
+
+.container-detail {
+  margin-bottom: 10vh;
+}
+
+h2.detail-header {
+  margin: 25px, 0, 25px, 0;
+  text-align: center;
+}
+
+#detail-apply-button {
+  display: flex;
+  justify-content: center;
+}
