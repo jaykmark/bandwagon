@@ -26,7 +26,7 @@ def artist_detail(request,pk):
 # -------- LISTS ---------- #
 
 def band_list(request):
-    bands = Band.artist.all()
+    bands = Band.objects.all()
     context = {"bands":bands}
     return render(request, 'band_list.html', context)
 
