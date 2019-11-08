@@ -37,12 +37,12 @@
         {% if user.is_authenticated %}
           <li><a href="{% url 'band_list' %}">BANDS</a></li>
           <li><a href="{% url 'artist_list' %}">ARTISTS</a></li>
+          <li><a href="{% url 'artist_detail'}">PROFILE</a></li>
           <li><a href="{% url 'logout' %}" class="btn">LOGOUT</a></li>
-          
         {% else %}
-          <li><a href="{% url 'register' %}">SIGNUP</a></li>
           <li><a href="{% url 'band_list' %}">BANDS</a></li>
           <li><a href="{% url 'artist_list' %}">ARTISTS</a></li>
+          <li><a href="{% url 'register' %}">SIGNUP</a></li>
           <li><a href="{% url 'login' %}" class="btn">LOGIN</a></li>
         {% endif %}
         </ul>
