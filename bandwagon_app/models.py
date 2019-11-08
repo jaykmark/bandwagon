@@ -29,7 +29,7 @@ class Band(models.Model):
 
 class BandMember(models.Model):
   band = models.ForeignKey(Band, on_delete = models.CASCADE, related_name = 'members')
-  artist = models.ForeignKey(Artist, on_delete = models.CASCADE)
+  artist = models.ForeignKey(Artist, on_delete = models.CASCADE,  related_name='allbands')
 
   def __str__(self):
     return f'{self.band} - {self.artist}'

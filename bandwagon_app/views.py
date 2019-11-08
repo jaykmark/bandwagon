@@ -7,6 +7,10 @@ from .forms import ArtistForm, BandForm
 from django.contrib.auth.decorators import login_required
 # -------------------  BAND ------------------- #
 
+# Landing
+def landing(req):
+    return render(req, 'landing.html')
+
 # Detail
 
 def band_detail(req,pk):
@@ -22,8 +26,12 @@ def band_detail(req,pk):
 
 
 def artist_detail(req,pk):
+    print('beep')
     artist = Artist.objects.get(id=pk)
-    context = {"artist":artist}
+    bands = BandMember.objects.filter(artist=pk)
+    context = {"artist":artist, "bandmembers":band}
+    print({"bands":bands})
+    context = {"artist":artist,"bands":bands}
     return render(req, 'artist_detail.html', context)
 
 # -------- LISTS ---------- #
@@ -79,10 +87,6 @@ def band_delete(req, pk, band_pk):
 
 # Detail
 
-def artist_detail(req,pk):
-    artist = Artist.objects.get(id=pk)
-    context = {"artist":artist}
-    return render(req, 'artist_detail.html', context)
 
 # List
 def artist_search(req):
@@ -95,11 +99,6 @@ def artist_search(req):
             filtered_artists.append(artist)
     data = serializers.serialize('json',filtered_artists)
     return JsonResponse({"artists":data})
-
-def artist_list(req):
-    artists = Artist.objects.all()
-    context = {"artists":artists}
-    return render(req, 'artist_list.html', context)
 
 # Create
 
