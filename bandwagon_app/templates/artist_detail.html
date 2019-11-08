@@ -17,14 +17,12 @@
 
     <h2 class="detail-header">Bands</h2>
     <ul>
-        {% for band in member.bands %}
         <li>
             <h3>{{band.name}}</h3><a href="#">Profile</a>     
             {% if admin %}
                 | <a href="{% url 'remove_bandmember' artist_pk=artist.pk artist_pk=member.artist.pk%}">Remove</a>
             {% endif %}
         </li>
-        {% endfor %}
     </ul>
     <a href="{% url 'artist_delete' pk=artist.pk %}">Delete Profile</a>
 </div>
