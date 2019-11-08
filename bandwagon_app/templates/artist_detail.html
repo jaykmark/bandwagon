@@ -1,3 +1,34 @@
-<h1> AHHHHHHHHHHHHHHHHHHHHHHHHH</h1> 
-<a href="{% url 'artist_edit' pk=artist.pk %}">Edit</a>
-<a href="{% url 'artist_delete' pk=artist.pk %}">DELETE</a>
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="detail-banner">
+    <img src="{{artist.photo_url}}" alt="">
+</div>
+
+<div class="container container-detail">
+    <h2 class="detail-header">{{artist.stage_name}}</h2>
+    <p>{{artist.description}}</p>
+    <a href="{% url 'artist_edit' pk=artist.pk %}">Edit Profile</a> 
+
+    {% if admin %}
+    <div id="detail-apply-button"><a href="{%url 'create_invite' band_pk=band.pk sender=True %}" class="btn">INVITE TO BAND</a></div>
+    {% endif %}
+
+    <h2 class="detail-header">Bands</h2>
+    <ul>
+        {% for band in member.bands %}
+        <li>
+            <h3>{{band.name}}</h3><a href="#">Profile</a>     
+            {% if admin %}
+                | <a href="{% url 'remove_bandmember' artist_pk=artist.pk artist_pk=member.artist.pk%}">Remove</a>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'artist_delete' pk=artist.pk %}">Delete Profile</a>
+</div>
+
+
+
+{% endblock %}
