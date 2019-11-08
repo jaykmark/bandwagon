@@ -50,7 +50,7 @@
 }
 
 .card-description {
-  font-size: 12px;
+  font-size: 10px;
   transform: translate(15px, -100px);
   height: 40px;
   width: 195px;
@@ -61,7 +61,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 180px;
+  width: 175px;
   height: 30px;
   margin-top: 0;
   font-size: 12px;
