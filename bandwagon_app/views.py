@@ -7,6 +7,10 @@ from .forms import ArtistForm, BandForm
 from django.contrib.auth.decorators import login_required
 # -------------------  BAND ------------------- #
 
+# Landing
+def landing(req):
+    return render(req, 'landing.html')
+
 # Detail
 
 def band_detail(req,pk):
@@ -25,6 +29,7 @@ def artist_detail(req,pk):
     print('beep')
     artist = Artist.objects.get(id=pk)
     bands = BandMember.objects.filter(artist=pk)
+    context = {"artist":artist, "bandmembers":band}
     print({"bands":bands})
     context = {"artist":artist,"bands":bands}
     return render(req, 'artist_detail.html', context)
