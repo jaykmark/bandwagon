@@ -29,10 +29,16 @@ def artist_detail(req,pk):
 # -------- LISTS ---------- #
 
 
-def band_list(request):
+def band_list(req):
     bands = Band.objects.all()
     context = {"bands":bands}
     return render(req, 'band_list.html', context)
+
+def artist_list(req):
+    artists = Artist.objects.all()
+    context = {"artists":artists}
+    return render(req, 'artist_list.html', context)
+
 
 # Create
 @login_required
@@ -79,6 +85,16 @@ def artist_detail(req,pk):
     return render(req, 'artist_detail.html', context)
 
 # List
+def artist_search(req):
+    query = req.GET['query']
+    print(query)
+    artists = Artist.objects.all()
+    filtered_artists = []
+    for artist in artists:
+        if query in artist.stage_name:
+            filtered_artists.append(artist)
+    data = serializers.serialize('json',filtered_artists)
+    return JsonResponse({"artists":data})
 
 def artist_list(req):
     artists = Artist.objects.all()
