@@ -7,6 +7,10 @@ from .forms import ArtistForm, BandForm
 from django.contrib.auth.decorators import login_required
 # -------------------  BAND ------------------- #
 
+# Landing
+def landing(req):
+    return render(req, 'landing.html')
+
 # Detail
 
 def band_detail(req,pk):
