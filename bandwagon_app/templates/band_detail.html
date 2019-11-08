@@ -3,21 +3,24 @@
 <div style="background-image:url({{band.photo_url}}) ;"id="band-banner">
 <h1>{{band.name}}</h1>
 </div>
-{%if invites%}
+
+<a href="{%url 'create_invite' band_pk=band.pk sender=True %}">Apply to Band</a>
+
+{%if admin%}
 <ul>
     {% for invite in invites %}
     <li>
-       <p>{{invite.artist.stage_name}} <a href="{%url 'add_bandmember' invite_pk=invite.pk %}">Accept</a> <a href="{%url 'decline_invite' invite_pk=invite.pk %}">Decline</a> </p>
+       <p>{{invite.artist.stage_name}} <a href="{%url 'add_bandmember' invite_pk=invite.pk  %}">Accept</a> <a href="{%url 'decline_invite' invite_pk=invite.pk %}">Decline</a> </p>
     </li>
     {%endfor%}
 </ul>
 {%endif%}
-{%if members%}
+{%if admin%}
 <h2>Members</h2>
 <ul>
     {% for member in members %}
     <li>
-       <p>{{member.artist.stage_name}} <a href="#">Profile</a> </p>
+       <p>{{member.artist.stage_name}} <a href="#">Profile</a> <a href="{% url 'remove_bandmember' band_pk=band.pk artist_pk=member.artist.pk%}">Remove</a> </p>
     </li>
     {%endfor%}
 </ul>
