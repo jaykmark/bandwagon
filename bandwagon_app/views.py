@@ -13,8 +13,8 @@ def landing(req):
 # Profile
 def profile(req):  
     if req.user:
-        if Artist.objects.filter(id=req.user.id).exists():
-            user_artist = Artist.objects.get(id=req.user.id)
+        if Artist.objects.filter(user=req.user.id).exists():
+            user_artist = Artist.objects.get(user=req.user.id)
             return redirect('artist_detail', pk = user_artist.pk)
         else: 
             return redirect('artist_create')
