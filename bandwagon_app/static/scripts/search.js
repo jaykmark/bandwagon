@@ -21,7 +21,7 @@ const bandTemplate = (band) => {
     
     return `<div class="card">
     <div class="card-image">
-      <img src="${band.image_source}" alt="">
+      <img src="${band.photo_url}" alt="">
     </div>
 
     <div class="card-name">${band.name}</div>
