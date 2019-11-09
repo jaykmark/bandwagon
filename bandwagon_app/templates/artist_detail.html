@@ -25,15 +25,13 @@
 </div>
 <!-- Modal Trigger -->
 <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
-
+{{admin}}
 <div class="container container-detail">
     <h2 class="detail-header">{{artist.stage_name}}</h2>
     <p>{{artist.description}}</p>
     <a href="{% url 'artist_edit' pk=artist.pk %}">Edit Profile</a> 
 
-    {% if admin %}
-    <div id="detail-apply-button"><a href="{%url 'create_invite' band_pk=band.pk sender=True %}" class="btn">INVITE TO BAND</a></div>
-    {% endif %}
+    
 
     <h2 class="detail-header">Bands</h2>
 
@@ -46,7 +44,7 @@
         <li>
             <h3>{{band.band}}</h3><a href="#">Profile</a>     
             {% if admin %}
-                | <a href="{% url 'remove_bandmember' artist_pk=artist.pk artist_pk=member.artist.pk%}">Remove</a>
+                | <a href="{% url 'remove_bandmember' artist_pk=artist.pk band_pk=band.band.pk%}">Remove</a>
             {% endif %}
         </li>
         {% endfor %}
