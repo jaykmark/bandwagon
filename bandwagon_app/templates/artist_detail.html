@@ -7,9 +7,9 @@
     <div class="modal-content">
     <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Choose Band</a>
    
-    <ul id='dropdown1' class='dropdown-content'></ul>
+    <ul id='dropdown1' class='dropdown-content'>
         {%for band in user_bands%}
-        <li><a href="#!">{{band.band.name}}</a></li>
+        <li><a href="{%url 'invite_artist' band_pk=band.band.pk artist_pk=band.artist.pk%}">{{band.band.name}}</a></li>
    
 
         {%endfor%}

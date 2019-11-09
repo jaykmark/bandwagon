@@ -29,7 +29,7 @@ def artist_detail(req,pk):
     print('beep')
     user_bands = None
     if req.user:
-        user_artist = Artist.objects.get(id=req.user.id)
+        user_artist = Artist.objects.get(user=req.user)
         user_bands = BandMember.objects.filter(artist = user_artist)
     artist = Artist.objects.get(id=pk)
     bands = BandMember.objects.filter(artist=pk)
@@ -105,20 +105,15 @@ def artist_search(req):
 # Create
 
 def artist_create(req):
-    artist = Artist.objects.get(id=req.user.id)
     if req.method == 'POST':
-        form = ArtistForm(req.POST,instance = artist)
+        form = ArtistForm(req.POST)
         if form.is_valid():
             artist = form.save(commit = False)
             artist.user = req.user
             artist.save()
             return redirect('artist_detail', pk=artist.pk)
-    else:
-       
-        if artist is not None:
-            form = ArtistForm(instance = artist)
-        else:
-            form = ArtistForm()
+    else: 
+        form = ArtistForm()
         context = {'form':form, 'header':"Add New Artist"}
         return render(req, 'artist_form.html', context)
 
@@ -160,15 +155,25 @@ def decline_invite(req,invite_pk):
      band_id = invite.band.id
      invite.delete()
      return redirect('band_detail',pk=band_id)
-
+#rename to apply_to_band
 @login_required
-def create_invite(req,band_pk,sender):
+def create_invite(req,band_pk):
     invite = Invite()
     invite.band = Band.objects.get(id=band_pk)
     invite.artist = Artist.objects.get(id=req.user.id)
-    invite.sender = sender
+    invite.sender = True
     invite.save()
     return redirect('band_detail',pk=band_pk)
+
+@login_required
+def invite_artist(req,band_pk,artist_pk):
+    invite = Invite()
+    invite.band = Band.objects.get(id=band_pk)
+    invite.artist = Artist.objects.get(id=req.user.id)
+    invite.sender = False
+    invite.save()
+    return redirect('artist_detain',pk=artist_pk)
+
 @login_required
 def remove_bandmember(req,band_pk,artist_pk):
     band_member = BandMember.objects.filter(band = band_pk)
