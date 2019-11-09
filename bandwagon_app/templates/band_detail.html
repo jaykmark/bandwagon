@@ -23,10 +23,10 @@
     </ul>
     {% endif %}
 
-    {% if not admin %}
+   
     <h2 class="detail-header">Looking For 2 Members</h2>
-    <div id="detail-apply-button"><a href="{%url 'create_invite' band_pk=band.pk artist_pk=None sender=True %}" class="btn">APPLY TO JOIN</a></div>
-    {% endif %}
+    <div id="detail-apply-button"><a href="{%url 'apply_to_band' band_pk=band.pk%}" class="btn">APPLY TO JOIN</a></div>
+    
 
     <h2 class="detail-header">Members</h2>
     <ul>
