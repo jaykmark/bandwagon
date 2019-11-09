@@ -163,7 +163,7 @@ def decline_invite(req,invite_pk):
 def apply_to_band(req,band_pk):
     invite = Invite()
     invite.band = Band.objects.get(id=band_pk)
-    invite.artist = Artist.objects.get(id=req.user.id)
+    invite.artist = Artist.objects.get(user=req.user.id)
     invite.sender = True
     invite.save()
     return redirect('band_detail',pk=band_pk)

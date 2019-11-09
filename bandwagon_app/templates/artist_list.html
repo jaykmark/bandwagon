@@ -2,14 +2,14 @@
 
 
 {% block content %}
-<div class="container container-list">
+
     <form action='' method="GET" id="artist-search">
     <label for="artist-search">Search For Artists</label>
     
     <input type="text" name="search" id='artist-query'>
-    <button type="submit">Search</button>
+    
 </form>
-
+<div id = "artist-list" class="container container-list">
     {% for artist in artists %}
     <div class="card">  
         <div class="card-image">

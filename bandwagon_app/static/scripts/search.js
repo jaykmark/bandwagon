@@ -1,9 +1,9 @@
 const onSuccessArtist = (res) =>{
     console.log(res)
-    $('#artist_list').empty()
+    $('#artist-list').empty()
     artists = JSON.parse(res.artists)
     artists.forEach(artist => {
-        $('#artist_list').append(`<p> ${artist.fields.stage_name} </p>`)
+        $('#artist-list').append(artistTemplate(artist))
     })
 }
 const onSuccessBand = (res) => {
@@ -18,9 +18,10 @@ const onErr = (err) => {
 }
 
 const bandTemplate = (band) => {
+    
     return `<div class="card">
     <div class="card-image">
-      <img src="${band.image_source}" alt="">
+      <img src="${band.photo_url}" alt="">
     </div>
 
     <div class="card-name">${band.name}</div>
@@ -29,7 +30,19 @@ const bandTemplate = (band) => {
     <a href='./${band.pk}' class="card-button btn">MORE</a>
   </div>`
 }
-$('#artist-search').on('submit',function(event){
+
+const artistTemplate = artist =>{
+    return `<div class="card">  
+    <div class="card-image">
+    <img src="${artist.fields.image_link}" alt="${artist.fields.stage_name}"/>
+    </div>
+
+    <div class="card-name">${artist.fields.stage_name}</div>
+    <div class="card-description">${artist.fields.description}</div>
+    <a href="./${artist.pk}" class="card-button btn">MORE</a>
+</div>`
+}
+$('#artist-search').on('keyup',function(event){
     event.preventDefault()
     let query = {query:$('#artist-query').val()}
     $.ajax({
@@ -40,7 +53,7 @@ $('#artist-search').on('submit',function(event){
         error:onErr
     })
 })
-$('#band-search').on('submit',function(event){
+$('#band-search').on('keyup',function(event){
     event.preventDefault()
     let query = {query:$('#band-query').val()}
     $.ajax({
