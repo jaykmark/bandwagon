@@ -26,14 +26,16 @@ def artist_list(req):
     return render(req, 'artist_list.html', context)
 
 def artist_detail(req,pk):
-    print('beep')
+    admin = False
     user_bands = None
     if req.user:
         user_artist = Artist.objects.get(user=req.user.id)
         user_bands = BandMember.objects.filter(artist = user_artist)
+        if pk == user_artist.id:
+            admin = True
     artist = Artist.objects.get(id=pk)
     bands = BandMember.objects.filter(artist=pk)
-    context = {"artist":artist,"bands":bands,"user_bands":user_bands, "user_artist":user_artist}
+    context = {"artist":artist,"bands":bands,"user_bands":user_bands, "user_artist":user_artist,"admin":admin}
     return render(req, 'artist_detail.html', context)
 
 def artist_create(req):
