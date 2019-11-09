@@ -29,7 +29,7 @@ def artist_detail(req,pk):
     print('beep')
     user_bands = None
     if req.user:
-        user_artist = Artist.objects.get(user=req.user)
+        user_artist = Artist.objects.get(user=req.user.id)
         user_bands = BandMember.objects.filter(artist = user_artist)
     artist = Artist.objects.get(id=pk)
     bands = BandMember.objects.filter(artist=pk)

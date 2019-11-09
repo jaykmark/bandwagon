@@ -1,15 +1,27 @@
 {%extends 'base.html'%}
 
-{%block content%}
-<form action='' method="GET" id="artist-search">
+
+{% block content %}
+<div class="container container-list">
+    <form action='' method="GET" id="artist-search">
     <label for="artist-search">Search For Artists</label>
     
     <input type="text" name="search" id='artist-query'>
     <button type="submit">Search</button>
 </form>
-<div id="artist_list">
+
     {% for artist in artists %}
-    <div class="artist">{{artist.stage_name}}</div>
+    <div class="card">  
+        <div class="card-image">
+        <img src="{{artist.photo_url}}" alt="{{artist.stage_name}}"/>
+        </div>
+
+        <div class="card-name">{{ artist.stage_name }}</div>
+        <div class="card-description">{{ artist.description }}</div>
+        <a href="{% url 'artist_detail' pk=artist.pk%}" class="card-button btn">MORE</a>
+    </div>
     {% endfor %}
 </div>
-{%endblock%}
+
+{% endblock %}
+

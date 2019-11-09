@@ -6,15 +6,13 @@
   <div id="modal1" class="modal">
     <div class="modal-content">
     <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Choose Band</a>
-   
     <ul id='dropdown1' class='dropdown-content'>
         {%for band in user_bands%}
         <li><a href="{%url 'invite_artist' band_pk=band.band.pk artist_pk=band.artist.pk%}">{{band.band.name}}</a></li>
-   
 
         {%endfor%}
     </ul>
-   
+    
     </div>
     <div class="modal-footer">
       <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
@@ -38,6 +36,11 @@
     {% endif %}
 
     <h2 class="detail-header">Bands</h2>
+
+    {% if admin %}
+    <a href="{% url 'band_create' %}" class='btn'>CREATE A BAND</a>
+    {% endif %}
+    
     <ul>
         {% for band in bands %}
         <li>

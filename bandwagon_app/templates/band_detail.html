@@ -23,7 +23,7 @@
     </ul>
     {% endif %}
 
-   
+
     <h2 class="detail-header">Looking For 2 Members</h2>
     <div id="detail-apply-button"><a href="{%url 'apply_to_band' band_pk=band.pk%}" class="btn">APPLY TO JOIN</a></div>
     
@@ -32,7 +32,7 @@
     <ul>
         {% for member in members %}
         <li>
-            <h3>{{member.artist.stage_name}}</h3><a href="#">Profile</a>     
+            <h3>{{member.artist.stage_name}}</h3><a href="{% url 'artist_detail' pk=member.artist.pk %}">Profile</a>     
             {% if admin %}
                 | <a href="{% url 'remove_bandmember' band_pk=band.pk artist_pk=member.artist.pk%}">Remove</a>
             {% endif %}
