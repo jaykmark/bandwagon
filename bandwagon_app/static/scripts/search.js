@@ -34,7 +34,7 @@ const bandTemplate = (band) => {
 const artistTemplate = artist =>{
     return `<div class="card">  
     <div class="card-image">
-    <img src="${artist.fields.image_source}" alt="${artist.fields.stage_name}"/>
+    <img src="${artist.fields.image_link}" alt="${artist.fields.stage_name}"/>
     </div>
 
     <div class="card-name">${artist.fields.stage_name}</div>
@@ -42,7 +42,7 @@ const artistTemplate = artist =>{
     <a href="./${artist.pk}" class="card-button btn">MORE</a>
 </div>`
 }
-$('#artist-search').on('submit',function(event){
+$('#artist-search').on('keyup',function(event){
     event.preventDefault()
     let query = {query:$('#artist-query').val()}
     $.ajax({
@@ -53,7 +53,7 @@ $('#artist-search').on('submit',function(event){
         error:onErr
     })
 })
-$('#band-search').on('submit',function(event){
+$('#band-search').on('keyup',function(event){
     event.preventDefault()
     let query = {query:$('#band-query').val()}
     $.ajax({
