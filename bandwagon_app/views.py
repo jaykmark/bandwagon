@@ -129,6 +129,7 @@ def artist_search(req):
     return JsonResponse({"artists":data})
 
 
+
 # -------------------------------------------- BandMembers and Invites
 @login_required
 def add_bandmember(req,invite_pk):
