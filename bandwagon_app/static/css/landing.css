@@ -6,3 +6,7 @@
   height: 91vh;
   background-image: url('../images/band_1.jpg');
 }
+
+.hero-tag {
+  display: block;
+}
