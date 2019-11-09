@@ -1,11 +1,15 @@
 {%extends 'base.html'%}
 
 {%block content%}
-<form action='' method="GET" id="search">
-    <label for="search">Search For Artists</label>
+<form action='' method="GET" id="artist-search">
+    <label for="artist-search">Search For Artists</label>
     
-    <input type="text" name="search" id='query'>
+    <input type="text" name="search" id='artist-query'>
     <button type="submit">Search</button>
 </form>
-<div id="artist_list"></div>
+<div id="artist_list">
+    {% for artist in artists %}
+    <div class="artist">{{artist.stage_name}}</div>
+    {% endfor %}
+</div>
 {%endblock%}

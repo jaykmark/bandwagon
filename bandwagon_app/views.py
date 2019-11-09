@@ -116,7 +116,7 @@ def band_delete(req, pk, band_pk):
     return redirect('band_list', pk=pk)
 
 
-# -------------- List
+# -------------- Search
 def artist_search(req):
     query = req.GET['query']
     print(query)
@@ -127,6 +127,17 @@ def artist_search(req):
             filtered_artists.append(artist)
     data = serializers.serialize('json',filtered_artists)
     return JsonResponse({"artists":data})
+
+def band_search(req):
+    query = req.GET['query']
+    print(query)
+    bands = Band.objects.all()
+    filtered_bands = []
+    for band in bands:
+        if query in band.name:
+            filtered_bands.append(band)
+    data = serializers.serialize('json',filtered_bands)
+    return JsonResponse({"bands":data})
 
 
 
@@ -157,14 +168,14 @@ def apply_to_band(req,band_pk):
     invite.save()
     return redirect('band_detail',pk=band_pk)
 
-@login_required
+@login_required 
 def invite_artist(req,band_pk,artist_pk):
     invite = Invite()
     invite.band = Band.objects.get(id=band_pk)
     invite.artist = Artist.objects.get(id=req.user.id)
     invite.sender = False
     invite.save()
-    return redirect('artist_detain',pk=artist_pk)
+    return redirect('artist_detail',pk=artist_pk)
 
 @login_required
 def remove_bandmember(req,band_pk,artist_pk):
