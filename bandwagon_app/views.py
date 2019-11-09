@@ -14,6 +14,7 @@ def landing(req):
 def profile(req):  
     if req.user:
         if Artist.objects.filter(id=req.user.id).exists():
+            user_artist = Artist.objects.get(id=req.user.id)
             return redirect('artist_detail', pk = user_artist.pk)
         else: 
             return redirect('artist_create')
@@ -28,7 +29,7 @@ def artist_detail(req,pk):
     print('beep')
     user_bands = None
     if req.user:
-        user_artist = Artist.objects.get(id=req.user.id)
+        user_artist = Artist.objects.get(user=req.user)
         user_bands = BandMember.objects.filter(artist = user_artist)
     artist = Artist.objects.get(id=pk)
     bands = BandMember.objects.filter(artist=pk)
@@ -36,21 +37,17 @@ def artist_detail(req,pk):
     return render(req, 'artist_detail.html', context)
 
 def artist_create(req):
-artist = Artist.objects.filter(id=req.user.id)
-if req.method == 'POST':
-    if artist.exists:
-        form = ArtistForm(req.POST,instance = artist)
-    else:
+    if req.method == 'POST':
         form = ArtistForm(req.POST)
-    if form.is_valid():
-        artist = form.save(commit = False)
-        artist.user = req.user
-        artist.save()
-        return redirect('artist_detail', pk=artist.pk)
-else:
-    form = ArtistForm()
-context = {'form':form, 'header':"Add New Artist"}
-return render(req, 'artist_form.html', context)
+        if form.is_valid():
+            artist = form.save(commit = False)
+            artist.user = req.user
+            artist.save()
+            return redirect('artist_detail', pk=artist.pk)
+    else: 
+        form = ArtistForm()
+        context = {'form':form, 'header':"Add New Artist"}
+        return render(req, 'artist_form.html', context)
 
 def artist_edit(req, pk):
     artist = Artist.objects.get(id=pk)
@@ -94,7 +91,7 @@ def band_create(req):
             band = form.save(commit = False)
             band.owner = Artist.objects.get(user = req.user)
             band.save()
-            return redirect('band_list.html', pk=band.pk)
+            return redirect('band_detail', pk=band.pk)
     else:
         form = BandForm()
         context = {'form':form, 'header':"Add New Band"}
@@ -151,13 +148,23 @@ def decline_invite(req,invite_pk):
     return redirect('band_detail',pk=band_id)
 
 @login_required
-def create_invite(req,band_pk,sender):
+def create_invite(req,band_pk):
     invite = Invite()
     invite.band = Band.objects.get(id=band_pk)
     invite.artist = Artist.objects.get(id=req.user.id)
-    invite.sender = sender
+    invite.sender = True
     invite.save()
     return redirect('band_detail',pk=band_pk)
+
+@login_required
+def invite_artist(req,band_pk,artist_pk):
+    invite = Invite()
+    invite.band = Band.objects.get(id=band_pk)
+    invite.artist = Artist.objects.get(id=req.user.id)
+    invite.sender = False
+    invite.save()
+    return redirect('artist_detain',pk=artist_pk)
+
 @login_required
 def remove_bandmember(req,band_pk,artist_pk):
     band_member = BandMember.objects.filter(band = band_pk)
