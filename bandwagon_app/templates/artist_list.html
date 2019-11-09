@@ -1,13 +1,14 @@
 {%extends 'base.html'%}
 
+
 {% block content %}
 <div class="container container-list">
-    <form action='' method="GET" id="search">
-        <label for="search">Search For Artists</label>
-        
-        <input type="text" name="search" id='query'>
-        <button type="submit">Search</button>
-    </form>
+    <form action='' method="GET" id="artist-search">
+    <label for="artist-search">Search For Artists</label>
+    
+    <input type="text" name="search" id='artist-query'>
+    <button type="submit">Search</button>
+</form>
 
     {% for artist in artists %}
     <div class="card">  
@@ -23,3 +24,4 @@
 </div>
 
 {% endblock %}
+
