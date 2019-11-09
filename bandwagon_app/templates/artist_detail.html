@@ -36,7 +36,11 @@
     {% endif %}
 
     <h2 class="detail-header">Bands</h2>
+
+    {% if admin %}
     <a href="{% url 'band_create' %}" class='btn'>CREATE A BAND</a>
+    {% endif %}
+    
     <ul>
         {% for band in bands %}
         <li>
