@@ -149,7 +149,7 @@ def decline_invite(req,invite_pk):
     return redirect('band_detail',pk=band_id)
 
 @login_required
-def create_invite(req,band_pk):
+def apply_to_band(req,band_pk):
     invite = Invite()
     invite.band = Band.objects.get(id=band_pk)
     invite.artist = Artist.objects.get(id=req.user.id)
