@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
+<div class="container">
   {% if error %}
     <p style="background-color: firebrick">{{error}}</p>
   {% endif %}
@@ -19,7 +19,7 @@
       </p>
       <button type="submit">Login</button>
     </form>
-
   </section>
+</div>
 
 {% endblock %}

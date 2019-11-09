@@ -2,16 +2,16 @@
 
 {% block content %}
 
-<section class="form-section">
-  <h2>{{header}}</h2>
- 
-  <form action="" method="POST" class="artist-form">
-    {% csrf_token %}
-    {{form.as_p}}
-    <button type="submit">GOT EEM</button>
-  </form>
- 
- 
-</section>
+<div class="container">
+  <section class="form-section">
+    <h2>{{header}}</h2>
+
+    <form action="" method="POST" class="artist-form">
+      {% csrf_token %}
+      {{form.as_p}}
+      <button type="submit">GOT EEM</button>
+    </form>
+  </section>
+</div>
 
 {% endblock %}

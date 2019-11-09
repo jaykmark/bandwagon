@@ -1,3 +1,59 @@
-<h1> AHHHHHHHHHHHHHHHHHHHHHHHHH</h1> 
-<a href="{% url 'artist_edit' pk=artist.pk %}">Edit</a>
-<a href="{% url 'artist_delete' pk=artist.pk %}">DELETE</a>
+{% extends 'base.html' %}
+
+{% block content %}
+  
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+    <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Choose Band</a>
+    <ul id='dropdown1' class='dropdown-content'>
+        {%for band in user_bands%}
+        <li><a href="{%url 'invite_artist' band_pk=band.band.pk artist_pk=band.artist.pk%}">{{band.band.name}}</a></li>
+
+        {%endfor%}
+    </ul>
+    
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
+  </div>
+
+
+<div class="detail-banner">
+    <img src="{{artist.photo_url}}" alt="">
+</div>
+<!-- Modal Trigger -->
+<a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
+
+<div class="container container-detail">
+    <h2 class="detail-header">{{artist.stage_name}}</h2>
+    <p>{{artist.description}}</p>
+    <a href="{% url 'artist_edit' pk=artist.pk %}">Edit Profile</a> 
+
+    {% if admin %}
+    <div id="detail-apply-button"><a href="{%url 'create_invite' band_pk=band.pk sender=True %}" class="btn">INVITE TO BAND</a></div>
+    {% endif %}
+
+    <h2 class="detail-header">Bands</h2>
+
+    {% if admin %}
+    <a href="{% url 'band_create' %}" class='btn'>CREATE A BAND</a>
+    {% endif %}
+    
+    <ul>
+        {% for band in bands %}
+        <li>
+            <h3>{{band.band}}</h3><a href="#">Profile</a>     
+            {% if admin %}
+                | <a href="{% url 'remove_bandmember' artist_pk=artist.pk artist_pk=member.artist.pk%}">Remove</a>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'artist_delete' pk=artist.pk %}">Delete Profile</a>
+</div>
+
+
+
+{% endblock %}
