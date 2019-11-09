@@ -172,7 +172,7 @@ def apply_to_band(req,band_pk):
 def invite_artist(req,band_pk,artist_pk):
     invite = Invite()
     invite.band = Band.objects.get(id=band_pk)
-    invite.artist = Artist.objects.get(id=req.user.id)
+    invite.artist = Artist.objects.get(id=artist_pk)
     invite.sender = False
     invite.save()
     return redirect('artist_detail',pk=artist_pk)
