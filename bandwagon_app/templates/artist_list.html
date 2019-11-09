@@ -1,11 +1,13 @@
 {%extends 'base.html'%}
 
 {%block content%}
-<form action='' method="GET" id="search">
-    <label for="search">Search For Artists</label>
-    
-    <input type="text" name="search" id='query'>
-    <button type="submit">Search</button>
-</form>
-<div id="artist_list"></div>
+<div class="container">
+    <form action='' method="GET" id="search">
+        <label for="search">Search For Artists</label>
+        
+        <input type="text" name="search" id='query'>
+        <button type="submit">Search</button>
+    </form>
+    <div id="artist_list"></div>
+</div>
 {%endblock%}

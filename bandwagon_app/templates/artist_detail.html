@@ -38,6 +38,7 @@
     {% endif %}
 
     <h2 class="detail-header">Bands</h2>
+    <a href="{% url 'band_create' %}" class='btn'>CREATE A BAND</a>
     <ul>
         {% for band in bands %}
         <li>
