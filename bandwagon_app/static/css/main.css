@@ -4,4 +4,19 @@
   box-sizing: border-box;
 }
 
+@import url('https://fonts.googleapis.com/css?family=Pirata+One&display=swap');
+
 /* ---------- NAV BAR ---------- */
+nav {
+  background-color: black;
+  font-family: 'Nova Round'
+}
+
+.brand-logo {
+  font-family: 'Viga';
+}
+
+/* ---------- NAV BAR ---------- */
+.btn {
+  background-color: #800E08;
+}
