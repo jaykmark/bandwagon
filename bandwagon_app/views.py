@@ -30,7 +30,7 @@ def artist_detail(req,pk):
     user_bands = None
     if req.user:
         user_artist = Artist.objects.get(user=req.user.id)
-        user_bands = BandMember.objects.filter(artist = user_artist)
+        user_bands = BandMember.objects.filter(artist = user_artist.id)
         if pk == user_artist.id:
             admin = True
     artist = Artist.objects.get(id=pk)
