@@ -1,12 +1,24 @@
 .hero {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-around;
+  align-items: space-around;
   width: 100%;
   height: 91vh;
   background-image: url('../images/band_1.jpg');
+  flex-wrap: wrap;
 }
 
 .hero-tag {
   display: block;
+  flex-basis: 100%;
+  font-family: 'Viga';
+  font-size: 72px;
+  color: white;
+  -webkit-text-stroke: 3px black;
+  text-align: center;
+}
+
+.btn-large {
+  font-size: 24px;
+  background-color: #800E08;
 }
