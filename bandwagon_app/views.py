@@ -13,8 +13,8 @@ def landing(req):
 # Profile
 def profile(req):  
     if req.user:
-        if Artist.objects.filter(id=req.user.id).exists():
-            user_artist = Artist.objects.get(id=req.user.id)
+        if Artist.objects.filter(user=req.user.id).exists():
+            user_artist = Artist.objects.get(user=req.user.id)
             return redirect('artist_detail', pk = user_artist.pk)
         else: 
             return redirect('artist_create')
@@ -26,14 +26,16 @@ def artist_list(req):
     return render(req, 'artist_list.html', context)
 
 def artist_detail(req,pk):
-    print('beep')
+    admin = False
     user_bands = None
     if req.user:
         user_artist = Artist.objects.get(user=req.user.id)
         user_bands = BandMember.objects.filter(artist = user_artist)
+        if pk == user_artist.id:
+            admin = True
     artist = Artist.objects.get(id=pk)
     bands = BandMember.objects.filter(artist=pk)
-    context = {"artist":artist,"bands":bands,"user_bands":user_bands, "user_artist":user_artist}
+    context = {"artist":artist,"bands":bands,"user_bands":user_bands, "user_artist":user_artist,"admin":admin}
     return render(req, 'artist_detail.html', context)
 
 def artist_create(req):
@@ -172,7 +174,7 @@ def apply_to_band(req,band_pk):
 def invite_artist(req,band_pk,artist_pk):
     invite = Invite()
     invite.band = Band.objects.get(id=band_pk)
-    invite.artist = Artist.objects.get(id=req.user.id)
+    invite.artist = Artist.objects.get(id=artist_pk)
     invite.sender = False
     invite.save()
     return redirect('artist_detail',pk=artist_pk)

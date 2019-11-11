@@ -1,24 +1,29 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div id="band-list" class="container container-list">
+<h2 class="list-header">List of Bands</h2>
 <form action='' method="GET" id="band-search">
   <label for="band-search">Search For Bands</label>
   <input type="text" name="search" id='band-query'>
 </form>
-<div id="band-list" class="container container-list">
+
   <!-- <div class="header">BAND LIST</div> -->
   {% for band in bands %}
   <div class="card">
-    <div class="card-image">
-      <img src="{{band.photo_url}}" alt="{{band.name}}"/>
-    </div>
+    <div class="card-background">
+      <div class="card-image">
+        <img src="{{band.photo_url}}" alt="{{band.name}}"/>
+      </div>
 
-    <div class="card-name">{{ band.name }}</div>
-    <div class="card-description">{{ band.description }}</div>
-<a href="{%url 'band_detail' pk=band.pk%}" class="card-button btn">MORE</a>
+      <div class="card-name">{{ band.name }}</div>
+      <div class="card-description">{{ band.description }}</div>
+      <a href="{%url 'band_detail' pk=band.pk%}" class="card-button btn">MORE</a>
+    </div>
   </div>
 
   {% endfor %}
+</div>
 </div>
 
 {% endblock %}

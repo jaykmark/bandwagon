@@ -10,11 +10,35 @@
   clear: right;
 }
 
+.list-header {
+  flex-basis: 100%;
+  text-align: center;
+}
+
+/* ---------------- SEARCH BAR ---------------- */
+#band-search {
+  flex-basis: 70%;
+}
+
+#artist-search {
+  flex-basis: 70%;
+}
+
 /* ---------------- CARD TEMPLATE ---------------- */
 .card {
-  width: 275px;
-  height: 275px;
-  margin: 150px 50px 0px 50px;
+  box-shadow: none;
+  flex-grow: 1.5;
+  flex-shrink: 0.5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 125px 50px 25px;
+}
+
+.card-background {
+
+  width: 300px;
+  height: 300px;
   box-shadow: 3px 11px 20px -4px rgba(0,0,0,0.24);
   border: 1px solid black;
 }
@@ -24,9 +48,10 @@
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  width: 240px;
-  height: 240px;
-  transform: translate(-32px, -85px)
+  width: 275px;
+  height: 275px;
+  transform: translate(-32px, -85px);
+  box-shadow: 3px 11px 20px -4px rgba(0,0,0,0.24);
 }
 
 .card-image img {
@@ -45,16 +70,17 @@
   height: 40px;
   background-color: white;
   font-size: 24px;
-  transform: translate(45px, -150px);
+  transform: translate(75px, -160px);
   border: 1px solid black;
   overflow: scroll;
+  box-shadow: 3px 11px 20px -4px rgba(0,0,0,0.24);
 }
 
 .card-description {
-  font-size: 10px;
-  transform: translate(20px, -110px);
-  height: 63px;
-  width: 235px;
+  font-size: 12px;
+  transform: translate(20px, -118px);
+  height: 58px;
+  width: 260px;
   overflow: auto;
 }
 
@@ -77,5 +103,5 @@
   width: 175px;
   height: 25px;
   font-size: 12px;
-  transform: translate(48px, -105px)
+  transform: translate(60px, -112px)
 }
