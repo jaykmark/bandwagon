@@ -20,3 +20,20 @@ nav {
 .btn {
   background-color: #800E08;
 }
+
+/* ---------- FORMS ---------- */
+.container-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-header {
+  flex-basis: 100%;
+  text-align: center;
+}
+
+.form-section {
+  width: 600px;
+  align-self: center;
+}

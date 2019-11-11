@@ -22,6 +22,26 @@
 h2.detail-header {
   margin: 25px, 0, 25px, 0;
   text-align: center;
+  font-family: 'Viga';
+}
+
+h3 {
+  font-family: 'Viga';
+  font-size: 32px;
+}
+
+.section-split {
+  border-top: 1px black solid;
+  margin-top: 40px;
+  height: 10px;
+  width: 70vw;
+  transform: translate(0px, 0px)
+}
+
+.container-split {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #detail-apply-button {
