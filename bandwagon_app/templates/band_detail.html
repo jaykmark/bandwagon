@@ -7,7 +7,6 @@
 </div>
 <div class="container container-detail">
     <h2 class="detail-header">{{band.name}}</h2>
-    
     <p>{{band.description}}</p>
 
     {% if admin %}
@@ -23,12 +22,19 @@
     </ul>
     {% endif %}
 
-
+    <div class="container-split">
+        <div class="section-split"></div>
+    </div>
+    
     <h2 class="detail-header">Looking For 2 Members</h2>
     <div id="detail-apply-button"><a href="{%url 'apply_to_band' band_pk=band.pk%}" class="btn">APPLY TO JOIN</a></div>
-    
 
-    <h2 class="detail-header">Members</h2>
+    <div class="container-split">
+        <div class="section-split"></div>
+    </div>
+
+    <h2 class="detail-header">Line-Up</h2>
+    
     <ul>
         {% for member in members %}
         <li>
@@ -36,11 +42,9 @@
             {% if admin %}
                 | <a href="{% url 'remove_bandmember' band_pk=band.pk artist_pk=member.artist.pk%}">Remove</a>
             {% endif %}
-            
         </li>
         {% endfor %}
     </ul>
-
 </div>
 
 {% endblock %}
