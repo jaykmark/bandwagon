@@ -10,6 +10,7 @@ const onSuccessBand = (res) => {
     bands = JSON.parse(res.bands)
     $('.card').remove()
     bands.forEach(band => {
+        console.log(band)
         $('#band-list').append(bandTemplate(band))
     })
 }
@@ -22,7 +23,7 @@ const bandTemplate = (band) => {
     return `  <div class="card">
     <div class="card-background">
       <div class="card-image">
-        <img src=${band.fields.image_link} alt=${band.fields.name}/>
+        <img src=${band.fields.photo_url} alt=${band.fields.name}/>
       </div>
 
       <div class="card-name">${band.fields.name}</div>
@@ -37,7 +38,7 @@ const artistTemplate = artist =>{
     return `<div class="card">  
     <div class="card-background">
     <div class="card-image">
-    <img src="${artist.fields.image_link}" alt="${artist.fields.stage_name}"/>
+    <img src="${artist.fields.image_link}" alt=${artist.fields.stage_name}/>
     </div>
 
     <div class="card-name">${artist.fields.stage_name}</div>

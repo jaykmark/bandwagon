@@ -35,8 +35,12 @@ def artist_detail(req,pk):
             admin = True
     
     artist = Artist.objects.get(id=pk)
+    invites = Invite.objects.filter(artist = pk)
+    
+    filtered_invites = filter(lambda invite: invite.sender == False,invites)
+    print(filtered_invites)
     bands = BandMember.objects.filter(artist=pk)
-    context = {"artist":artist,"bands":bands,"user_bands":user_bands, "user_artist":user_artist,"admin":admin}
+    context = {"artist":artist,"bands":bands,"user_bands":user_bands, "user_artist":user_artist,"admin":admin,"invites": filtered_invites}
     return render(req, 'artist_detail.html', context)
 
 def artist_create(req):
