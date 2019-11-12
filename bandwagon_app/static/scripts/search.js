@@ -35,6 +35,7 @@ const bandTemplate = (band) => {
 
 const artistTemplate = artist =>{
     return `<div class="card">  
+    <div class="card-background">
     <div class="card-image">
     <img src="${artist.fields.image_link}" alt="${artist.fields.stage_name}"/>
     </div>
@@ -42,6 +43,7 @@ const artistTemplate = artist =>{
     <div class="card-name">${artist.fields.stage_name}</div>
     <div class="card-description">${artist.fields.description}</div>
     <a href="./${artist.pk}" class="card-button btn">MORE</a>
+</div>
 </div>`
 }
 $('#artist-search').on('keyup',function(event){
