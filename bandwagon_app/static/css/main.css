@@ -21,6 +21,10 @@ nav {
   background-color: #800E08;
 }
 
+.btn:hover {
+  background-color: #FF0E08;
+}
+
 /* ---------- FORMS ---------- */
 .container-form {
   display: flex;

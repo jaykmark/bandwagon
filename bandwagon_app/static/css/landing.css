@@ -24,3 +24,7 @@
   font-size: 24px;
   background-color: #800E08;
 }
+
+.btn-large:hover {
+  background-color: #FF0E08;
+}

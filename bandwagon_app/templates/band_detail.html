@@ -3,9 +3,10 @@
 {% block content %}
 
 <div class="detail-banner">
-    <img src="{{band.photo_url}}" alt="">
+    <img src="{{band.photo_url}}" alt="{{band.name}}">
 </div>
-<div class="container container-detail">
+
+<div class="container container-list">
     <h2 class="detail-header">{{band.name}}</h2>
     <p>{{band.description}}</p>
 
@@ -14,9 +15,9 @@
     <ul>
         {% for invite in invites %}
         <li>
-        <h3>{{invite.artist.stage_name}}</h3>
-        <a href="#">Profile</a> |
-        <a href="{%url 'add_bandmember' invite_pk=invite.pk  %}">Accept</a> <a href="{%url 'decline_invite' invite_pk=invite.pk %}">Decline</a> </p>
+            <h3>{{invite.artist.stage_name}}</h3>
+            <a href="#">Profile</a> |
+            <a href="{%url 'add_bandmember' invite_pk=invite.pk  %}">Accept</a> <a href="{%url 'decline_invite' invite_pk=invite.pk %}">Decline</a> </p>
         </li>
         {%endfor%}
     </ul>
@@ -34,17 +35,23 @@
     </div>
 
     <h2 class="detail-header">Line-Up</h2>
-    
-    <ul>
-        {% for member in members %}
-        <li>
-            <h3>{{member.artist.stage_name}}</h3><a href="{% url 'artist_detail' pk=member.artist.pk %}">Profile</a>     
-            {% if admin %}
-                | <a href="{% url 'remove_bandmember' band_pk=band.pk artist_pk=member.artist.pk%}">Remove</a>
-            {% endif %}
-        </li>
-        {% endfor %}
-    </ul>
+
+    {% for member in members %}
+    <div class="card">  
+        <div class="card-background">
+        <div class="card-image">
+            <img src="{{member.artist.photo_url}}" alt="{{member.artist.stage_name}}"/>
+        </div>
+        <div class="card-name">{{ member.artist.stage_name }}</div>
+        <div class="card-description">{{ member.artist.description }}</div>
+        <a href="{% url 'artist_detail' pk=member.artist.pk%}" class="card-button btn">MORE</a>
+        <div class="remove-member">
+            <a href="#" class="remove-member">Remove from Band</a>
+        </div>
+        </div>
+    </div>
+    {% endfor %}
+
 </div>
 
 {% endblock %}
