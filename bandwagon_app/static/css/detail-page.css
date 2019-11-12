@@ -51,8 +51,13 @@ h3 {
   justify-content: center;
 }
 
+.cancel-icon {
+  font-size: 12px;
+  transform: translate(-1px, 1px);
+}
+
 .remove-member {
   font-size: 12px;
-  transform: translate(190px, -95px);
+  transform: translate(180px, -95px);
   color: #FF0E08;
 }

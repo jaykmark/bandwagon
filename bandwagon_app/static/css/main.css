@@ -16,12 +16,25 @@ nav {
   font-family: 'Viga';
 }
 
-/* ---------- NAV BAR ---------- */
 .btn {
   background-color: #800E08;
 }
 
 .btn:hover {
+  background-color: #FF0E08;
+}
+
+/* ---------- SIDE NAV ---------- */
+.sidenav-overlay {
+  transform: translate(-100px,0px);
+  width: 700px;
+}
+
+.sidenav {
+  font-family: 'Nova Round';
+}
+
+.sidenav button:hover {
   background-color: #FF0E08;
 }
 
@@ -54,3 +67,4 @@ nav {
   align-self: center;
   margin-top: 10px;
 }
+
