@@ -60,7 +60,7 @@
       <a href="{% url 'band_detail' pk=member.band.pk%}" class="card-button btn">MORE</a>
       <!-- IF STATEMENT TO LET BAND OWNER REMOVE -->
       <div class="remove-member">
-        <a href="#" class="remove-member"><i class="material-icons cancel-icon">cancel</i>Remove from Band</a>
+        <a href="#" class="remove-member"><i class="material-icons cancel-icon">cancel</i>Leave Band</a>
       </div>
     </div>
 </div>
@@ -86,12 +86,26 @@
         </li>
    
     {%endfor%}
+    <a href="{% url 'artist_delete' pk=artist.pk %}" class="delete-profile"><i class="material-icons cancel-icon">cancel</i>Delete Profile</a>
 
+{%endif%}
  
-   
+{% for band in bands %}
+<div class="card">
+  <div class="card-background">
+    <div class="card-image">
+      <img src="{{band.photo_url}}" alt="{{band.name}}"/>
+    </div>
+
+    <div class="card-name">{{ band.name }}</div>
+    <div class="card-description">{{ band.description }}</div>
+    <a href="{%url 'band_detail' pk=band.pk%}" class="card-button btn">MORE</a>
+  </div>
+</div>
+
+{% endfor %}
   
 
-    <a href="{% url 'artist_delete' pk=artist.pk %}" class="delete-profile"><i class="material-icons cancel-icon">cancel</i>Delete Profile</a>
 
 </div>
 
