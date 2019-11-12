@@ -39,9 +39,13 @@
 
     <h2 class="detail-header">Invites</h2>
 
-    {%for invite in artist.invites %}
-    {%if invite.sender == False%}
-    {%endif%}
+    {%for invite in invites %}
+    <li>
+            <h3>{{invite.band.name}}</h3>
+            <a href="#">Profile</a> |
+            <a href="{%url 'add_bandmember' invite_pk=invite.pk  %}">Accept</a> | <a href="{%url 'decline_invite' invite_pk=invite.pk %}">Decline</a> </p>
+        </li>
+   
     {%endfor%}
     {% endif %}
     
