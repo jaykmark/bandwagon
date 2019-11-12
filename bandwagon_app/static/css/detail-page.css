@@ -78,3 +78,7 @@ h3 {
   margin-right: 15px;
   color: #FF0E08;
 }
+
+.invites-list {
+  list-style: none;
+}
