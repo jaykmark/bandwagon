@@ -50,12 +50,18 @@ h3 {
 
 .cancel-icon {
   font-size: 12px;
-  transform: translate(-1px, 1px);
+  transform: translate(-1px, 2px);
 }
 
 .remove-member {
   font-size: 12px;
-  transform: translate(220px, -95px);
+  transform: translate(175px, -95px);
+  color: #FF0E08;
+}
+
+.leave-band {
+  font-size: 12px;
+  transform: translate(215px, -95px);
   color: #FF0E08;
 }
 
