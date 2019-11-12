@@ -37,8 +37,8 @@
         <div class="section-split"></div>
     </div>
     
-    <h2 class="detail-header">Looking For {{band.desired_number}} Members</h2>
-    <div id="detail-button"><a href="{%url 'apply_to_band' band_pk=band.pk%}" class="btn">APPLY TO JOIN</a></div>
+    <h2 class="detail-header">Looking For {{desired_members}} Members</h2>
+    <div id="detail-apply-button"><a href="{%url 'apply_to_band' band_pk=band.pk%}" class="btn">APPLY TO JOIN</a></div>
 
     <div class="container-split">
         <div class="section-split"></div>
@@ -56,9 +56,11 @@
             <div class="card-description">{{ member.artist.description }}</div>
             <a href="{% url 'artist_detail' pk=member.artist.pk%}" class="card-button btn">MORE</a>
             <!-- IF STATEMENT TO LET BAND OWNER REMOVE -->
+            {%if admin%}
             <div class="remove-member">
-                <a href="#" class="remove-member"><i class="material-icons cancel-icon">cancel</i>Remove from Band</a>
+                <a href="{%url 'remove_bandmember' band_pk=member.band.pk artist_pk=member.artist.pk %}" class="remove-member"><i class="material-icons cancel-icon">cancel</i>Remove from Band</a>
             </div>
+            {%endif%}
         </div>
     </div>
     {% endfor %}

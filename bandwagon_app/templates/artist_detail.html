@@ -50,7 +50,7 @@
       <a href="{% url 'band_detail' pk=band.band.pk%}" class="card-button btn">MORE</a>
       <!-- IF STATEMENT TO LET BAND OWNER REMOVE -->
       <div class="remove-member">
-        <a href="#" class="remove-member"><i class="material-icons cancel-icon">cancel</i>Remove from Band</a>
+        <a href="#" class="remove-member"><i class="material-icons cancel-icon">cancel</i>Leave Band</a>
       </div>
     </div>
   </div>
@@ -68,12 +68,15 @@
 
     <h2 class="detail-header">Invites</h2>
 
-    {% for invite in artist.invites %}
-    {% if invite.sender == False %}
-    {% endif %}
-    {% endfor %}
-    {% endif %}
 
+    {%for invite in invites %}
+    <li>
+            <h3>{{invite.band.name}}</h3>
+            <a href="#">Profile</a> |
+            <a href="{%url 'add_bandmember' invite_pk=invite.pk  %}">Accept</a> | <a href="{%url 'decline_invite' invite_pk=invite.pk %}">Decline</a> </p>
+        </li>
+   
+    {%endfor%}
     <a href="{% url 'artist_delete' pk=artist.pk %}" class="delete-profile"><i class="material-icons cancel-icon">cancel</i>Delete Profile</a>
   </div>
   </div>

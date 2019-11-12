@@ -35,8 +35,12 @@ def artist_detail(req,pk):
             admin = True
     
     artist = Artist.objects.get(id=pk)
+    invites = Invite.objects.filter(artist = pk)
+    
+    filtered_invites = filter(lambda invite: invite.sender == False,invites)
+    print(filtered_invites)
     bands = BandMember.objects.filter(artist=pk)
-    context = {"artist":artist,"bands":bands,"user_bands":user_bands, "user_artist":user_artist,"admin":admin}
+    context = {"artist":artist,"bands":bands,"user_bands":user_bands, "user_artist":user_artist,"admin":admin,"invites": filtered_invites}
     return render(req, 'artist_detail.html', context)
 
 def artist_create(req):
@@ -102,13 +106,13 @@ def band_create(req):
         return render(req, 'band_form.html', context)
 
 @login_required
-def band_edit(req, pk, band_pk):
-    band = Band.objects.get(id=band_pk)
+def band_edit(req, pk):
+    band = Band.objects.get(id=pk)
     if req.method == 'POST':
         form = BandForm(req.POST, instance=band)
         if form.is_valid():
             band = form.save()
-            return redirect('band_detail.html', pk=band.pk)
+            return redirect('band_detail', pk=pk)
     else:
         form = BandForm(instance=band)
         context = {'form':form, 'header':f"Edit {band.name}"}
