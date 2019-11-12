@@ -37,21 +37,30 @@
       <div class="nav-wrapper container">
         <a href="{% url 'landing' %}" class="brand-logo">BANDWAGON</a>
         <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-        {% if user.is_authenticated %}
+        <ul class="right hide-on-med-and-down">
           <li><a href="{% url 'band_list' %}">BANDS</a></li>
           <li><a href="{% url 'artist_list' %}">ARTISTS</a></li>
+        {% if user.is_authenticated %}
           <li><a href="{% url 'profile' %}">PROFILE</a></li>
           <li><a href="{% url 'logout' %}" class="btn">LOGOUT</a></li>
         {% else %}
-          <li><a href="{% url 'band_list' %}">BANDS</a></li>
-          <li><a href="{% url 'artist_list' %}">ARTISTS</a></li>
           <li><a href="{% url 'register' %}">SIGNUP</a></li>
           <li><a href="{% url 'login' %}" class="btn">LOGIN</a></li>
         {% endif %}
         </ul>
       </div>
     </nav>
+    <ul class="sidenav" id="mobile-demo">
+      <li><a href="{% url 'band_list' %}">BANDS</a></li>
+      <li><a href="{% url 'artist_list' %}">ARTISTS</a></li>
+      {% if user.is_authenticated %}
+        <li><a href="{% url 'profile' %}">PROFILE</a></li>
+        <li><a href="{% url 'logout' %}" class="btn">LOGOUT</a></li>
+      {% else %}
+        <li><a href="{% url 'register' %}">SIGNUP</a></li>
+        <li><a href="{% url 'login' %}" class="btn">LOGIN</a></li>
+      {% endif %}
+    </ul>
   </div>
 
   {% block content %}
