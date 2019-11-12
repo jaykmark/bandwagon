@@ -2,18 +2,17 @@
 
 {% block content %}
 
-<div class="container">
+<h2 class="form-header">{{header}}</h2>
+<div class="container-form">
   <section class="form-section container-form">
-    <h2>{{header}}</h2>
-    
+  
     <form action="" method="POST" class="band-form">
       {% csrf_token %}
       {{form.as_p}}
-      <button type="submit">GOT EEM</button>
+      <div class="container-split">
+        <button type="submit" class="btn form-button">SUBMIT</button>
+      </div>
     </form>
-    
-    <p>You ain't a real one</p>
-    
   </section>
 </div>
 

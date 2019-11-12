@@ -10,6 +10,10 @@
     <h2 class="detail-header">{{band.name}}</h2>
     <p>{{band.description}}</p>
 
+    <div class="detail-button">
+        <a href="{% url 'band_edit' pk=band.pk %}" class="edit-profile btn">Edit Band</a> 
+    </div>
+
     {% if admin %}
     <div class="container-split">
         <div class="section-split"></div>
@@ -34,7 +38,7 @@
     </div>
     
     <h2 class="detail-header">Looking For {{band.desired_number}} Members</h2>
-    <div id="detail-apply-button"><a href="{%url 'apply_to_band' band_pk=band.pk%}" class="btn">APPLY TO JOIN</a></div>
+    <div id="detail-button"><a href="{%url 'apply_to_band' band_pk=band.pk%}" class="btn">APPLY TO JOIN</a></div>
 
     <div class="container-split">
         <div class="section-split"></div>

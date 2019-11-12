@@ -5,12 +5,11 @@
 <h2 class="form-header">{{header}}</h2>
 <div class="container-form">
   <section class="form-section container-form">
-
     <form action="" method="POST" class="artist-form">
       {% csrf_token %}
       {{form.as_p}}
       <div class="container-split">
-        <button type="submit" class="btn form-button">CREATE</button>
+        <button type="submit" class="btn form-button">SUBMIT</button>
       </div>
     </form>
   </section>
