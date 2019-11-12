@@ -10,6 +10,10 @@
     <h2 class="detail-header">{{band.name}}</h2>
     <p>{{band.description}}</p>
 
+    <div class="detail-button">
+        <a href="{% url 'band_edit' pk=band.pk %}" class="edit-profile btn">Edit Band</a> 
+    </div>
+
     {% if admin %}
     <div class="container-split">
         <div class="section-split"></div>

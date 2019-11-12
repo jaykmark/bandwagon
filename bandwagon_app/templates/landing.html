@@ -2,9 +2,12 @@
 
 {% block content %}
 
-<div class="hero">
-  <h2 class="hero-tag">BAND TOGETHER.</h2>
-  <a href="{% url 'band_list' %}" class="btn-large">EXPLORE</a>
+  <div class="hero">
+      <div id="opacity">
+    <h2 class="hero-tag">BAND TOGETHER</h2>
+    <a href="{% url 'band_list' %}" class="btn-large">EXPLORE</a>
+    <h4 class="hero-description">CONNECT WITH MUSICIANS. FIND YOUR GROOVE.</h4>
+  </div>  
 </div>
 
 {% endblock %}
