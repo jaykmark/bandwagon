@@ -51,7 +51,7 @@
       <!-- IF STATEMENT TO LET BAND OWNER REMOVE -->
       {% if admin %}
       <div class="remove-member">
-        <a href="{%url 'band_detail' pk=band.pk%}" class="remove-member"><i class="material-icons cancel-icon">cancel</i>Leave Band</a>
+        <a href="{%url 'remove_bandmember' band_pk=band.band.pk artist_pk=band.artist.pk %}" class="remove-member"><i class="material-icons cancel-icon">cancel</i>Leave Band</a>
         {% endif %}
     </div>
     </div>
