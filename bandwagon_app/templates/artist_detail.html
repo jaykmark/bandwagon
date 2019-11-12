@@ -8,7 +8,7 @@
     <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Choose Band</a>
     <ul id='dropdown1' class='dropdown-content'>
         {%for userband in user_bands%}
-        <li><a href="{%url 'invite_artist' band_pk=userband.pk artist_pk=user_artist.pk%}">{{userband.name}}</a></li>
+        <li><a href="{%url 'invite_artist' band_pk=userband.pk artist_pk=artist.pk%}">{{userband.name}}</a></li>
 
         {%endfor%}
     </ul>
@@ -71,7 +71,7 @@
 
     <h2 class="detail-header">Invites</h2>
 
-
+    {% if admin %}
     {%for invite in invites %}
     <li>
             <h3>{{invite.band.name}}</h3>
@@ -80,7 +80,7 @@
         </li>
     {%endfor%}
 
-    {% if admin %}
+   
     <a href="{% url 'artist_delete' pk=artist.pk %}" class="delete-profile"><i class="material-icons cancel-icon">cancel</i>Delete Profile</a>
     {% endif %}
   </div>
