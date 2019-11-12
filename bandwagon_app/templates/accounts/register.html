@@ -1,9 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container">
+<h2 class="form-header">Sign Up</h2>
+<div class="container-form">
   {% if error %}
-    <p style="background-color: firebrick">{{error}}</p>
+  <div class="container-split">
+    <p style="color: firebrick">{{error}}</p>
+  </div>
   {% endif %}
 
   <section class="form-section">
@@ -33,7 +36,9 @@
         <label for="password2">Confirm Password</label>
         <input type="password" name="password2" maxlength="25" minlength="4" required>
       </p>
-      <button type="submit">Register</button>
+      <div class="container-split">
+        <button type="submit" class="btn form-button">Register</button>
+      </div>
     </form>
   </section>
 </div>

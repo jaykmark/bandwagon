@@ -1,10 +1,14 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container">
-  {% if error %}
-    <p style="background-color: firebrick">{{error}}</p>
-  {% endif %}
+<h2 class="form-header">Login</h2>
+{% if error %}
+<div class="container-split">
+  <p style="color: firebrick">{{error}}</p>
+</div>
+{% endif %}
+<div class="container-form">
+
 
   <section class="form-section">
     <form action="{% url 'login' %}" method="POST">
@@ -17,7 +21,9 @@
         <label for="password">Password</label>
         <input type="password" name="password" maxlength="25" minlength="2" required>
       </p>
-      <button type="submit">Login</button>
+      <div class="container-split">
+        <button type="submit" class="btn form-button">Login</button>
+      </div>
     </form>
   </section>
 </div>

@@ -29,13 +29,18 @@ def artist_detail(req,pk):
     admin = False
     user_bands = None
     if req.user:
-        user_artist = Artist.objects.get(user=req.user.id)
-        user_bands = BandMember.objects.filter(artist = user_artist)
+        user_artist = Artist.objects.get(user=req.user)
+        user_bands = Band.objects.filter(owner = user_artist.id)
         if pk == user_artist.id:
             admin = True
+    
     artist = Artist.objects.get(id=pk)
+    invites = Invite.objects.filter(artist = pk)
+    
+    filtered_invites = filter(lambda invite: invite.sender == False,invites)
+    print(filtered_invites)
     bands = BandMember.objects.filter(artist=pk)
-    context = {"artist":artist,"bands":bands,"user_bands":user_bands, "user_artist":user_artist,"admin":admin}
+    context = {"artist":artist,"bands":bands,"user_bands":user_bands, "user_artist":user_artist,"admin":admin,"invites": filtered_invites}
     return render(req, 'artist_detail.html', context)
 
 def artist_create(req):
@@ -48,7 +53,7 @@ def artist_create(req):
             return redirect('artist_detail', pk=artist.pk)
     else: 
         form = ArtistForm()
-        context = {'form':form, 'header':"Add New Artist"}
+        context = {'form':form, 'header':"Create Artist"}
         return render(req, 'artist_form.html', context)
 
 def artist_edit(req, pk):
@@ -81,8 +86,9 @@ def band_detail(req,pk):
         admin = True
     invites =  Invite.objects.filter(band=pk)
     members = BandMember.objects.filter(band=pk)
+    desired_members =  band.desired_number - len(members)
     invites = filter(lambda invite: invite.sender == True,invites)
-    context = {"band":band,"invites":invites,"members":members,"admin":admin}
+    context = {"band":band,"invites":invites,"members":members,"admin":admin,"desired_members":desired_members}
     return render(req,'band_detail.html',context)
 
 @login_required
@@ -96,17 +102,17 @@ def band_create(req):
             return redirect('band_detail', pk=band.pk)
     else:
         form = BandForm()
-        context = {'form':form, 'header':"Add New Band"}
+        context = {'form':form, 'header':"Create Band"}
         return render(req, 'band_form.html', context)
 
 @login_required
-def band_edit(req, pk, band_pk):
-    band = Band.objects.get(id=band_pk)
+def band_edit(req, pk):
+    band = Band.objects.get(id=pk)
     if req.method == 'POST':
         form = BandForm(req.POST, instance=band)
         if form.is_valid():
             band = form.save()
-            return redirect('band_detail.html', pk=band.pk)
+            return redirect('band_detail', pk=pk)
     else:
         form = BandForm(instance=band)
         context = {'form':form, 'header':f"Edit {band.name}"}

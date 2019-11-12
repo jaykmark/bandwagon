@@ -1,12 +1,48 @@
 .hero {
+  width: 100%;
+  height: 100%;
+  height: 91vh;
+  background: url('../images/band_1.jpg') center;
+  background-size: cover;
+}
+
+#opacity {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  height: 91vh;
-  background-image: url('../images/band_1.jpg');
+  align-content: center;
+  flex-wrap: wrap;
+  z-index: 1000;
+  min-height: 91vh;
+  background-color: rgba(0,0,0, 0.5);
 }
 
 .hero-tag {
-  display: block;
+  flex-basis: 100%;
+  font-family: 'Viga';
+  font-size: 72px;
+  color: white;
+  -webkit-text-stroke: 3px black;
+  text-align: center;
+  transform: translate(0px, -25px);
+}
+
+.hero-description{
+  flex-basis: 100%;
+  font-family: 'Viga';
+  font-size: 36px;
+  color: white;
+  -webkit-text-stroke: 3px black;
+  text-align: center;
+  transform: translate(0px, 75px);
+}
+
+.btn-large {
+  font-size: 24px;
+  background-color: #800E08;
+  transform: translate(0px, -30px);
+}
+
+.btn-large:hover {
+  background-color: #FF0E08;
 }

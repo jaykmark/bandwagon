@@ -12373,8 +12373,7 @@ $jscomp.polyfill = function (e, r, p, m) {
   Range.init($('input[type=range]'));
 })(cash, M.anime);
 
-document.addEventListener('DOMContentLoaded', function() {
-  const elems = document.querySelectorAll('.sidenav');
-  const instances = M.Sidenav.init(elems, options);
+
+$(document).ready(function(){
+  $('.sidenav').sidenav();
 });
-      

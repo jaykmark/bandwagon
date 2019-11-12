@@ -16,7 +16,55 @@ nav {
   font-family: 'Viga';
 }
 
-/* ---------- NAV BAR ---------- */
 .btn {
   background-color: #800E08;
 }
+
+.btn:hover {
+  background-color: #FF0E08;
+}
+
+/* ---------- SIDE NAV ---------- */
+.sidenav-overlay {
+  transform: translate(-100px,0px);
+  width: 700px;
+}
+
+.sidenav {
+  font-family: 'Nova Round';
+}
+
+.sidenav button:hover {
+  background-color: #FF0E08;
+}
+
+/* ---------- FORMS ---------- */
+.container-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-header {
+  flex-basis: 100%;
+  text-align: center;
+  font-size: 32px;
+  font-family: 'Viga';
+}
+
+.form-section {
+  width: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-section p {
+  width: 300px;
+}
+
+.form-button {
+  align-self: center;
+  margin-top: 10px;
+}
+

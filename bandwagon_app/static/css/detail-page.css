@@ -13,18 +13,62 @@
   min-height: 100%;
   object-fit: cover;
   box-shadow: 3px 11px 20px -4px rgba(0,0,0,0.24);
+  transform: translate(0px, 15%);
 }
 
 .container-detail {
-  margin-bottom: 10vh;
+  margin-bottom: 5vh;
+  display: flex;
+  flex-direction: column;
 }
 
 h2.detail-header {
   margin: 25px, 0, 25px, 0;
   text-align: center;
+  font-family: 'Viga';
+  flex-basis: 100%;
 }
 
-#detail-apply-button {
+h3 {
+  font-family: 'Viga';
+  font-size: 32px;
+}
+
+.section-split {
+  border-top: 1px black solid;
+  margin-top: 40px;
+  height: 10px;
+  width: 70vw;
+  transform: translate(0px, 0px)
+}
+
+.container-split {
   display: flex;
   justify-content: center;
+  align-items: center;
+}
+
+.cancel-icon {
+  font-size: 12px;
+  transform: translate(-1px, 1px);
+}
+
+.remove-member {
+  font-size: 12px;
+  transform: translate(220px, -95px);
+  color: #FF0E08;
+}
+
+.detail-button {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+  flex-basis: 100%;
+}
+
+.delete-profile {
+  align-self: flex-end;
+  margin-top: 10px;
+  margin-right: 15px;
+  color: #FF0E08;
 }

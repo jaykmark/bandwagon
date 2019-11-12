@@ -13,15 +13,34 @@
 .list-header {
   flex-basis: 100%;
   text-align: center;
+  font-family: 'Viga';
 }
 
 /* ---------------- SEARCH BAR ---------------- */
+.search-section {
+  display: flex;
+  justify-content: center; 
+  flex-basis: 70%;
+}
+
 #band-search {
   flex-basis: 70%;
+  display: flex;
+  justify-content: center;
+}
+
+#band-query {
+  width: 300px;
 }
 
 #artist-search {
   flex-basis: 70%;
+  display: flex;
+  justify-content: center;
+}
+
+#artist-query {
+  width: 300px;
 }
 
 /* ---------------- CARD TEMPLATE ---------------- */
@@ -68,12 +87,14 @@
   align-items: center;
   width: 255px;
   height: 40px;
-  background-color: white;
+  background-color: black;
+  color: white;
   font-size: 24px;
   transform: translate(75px, -160px);
   border: 1px solid black;
   overflow: scroll;
   box-shadow: 3px 11px 20px -4px rgba(0,0,0,0.24);
+  font-family: 'Viga';
 }
 
 .card-description {
