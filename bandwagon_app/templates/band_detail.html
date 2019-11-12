@@ -10,6 +10,10 @@
     <h2 class="detail-header">{{band.name}}</h2>
     <p>{{band.description}}</p>
 
+    <div class="detail-button">
+        <a href="{% url 'band_edit' pk=band.pk %}" class="edit-profile btn">Edit Band</a> 
+    </div>
+
     {% if admin %}
     <div class="container-split">
         <div class="section-split"></div>
@@ -33,8 +37,13 @@
         <div class="section-split"></div>
     </div>
     
+<<<<<<< carson
     <h2 class="detail-header">Looking For {{desired_members}} Members</h2>
     <div id="detail-apply-button"><a href="{%url 'apply_to_band' band_pk=band.pk%}" class="btn">APPLY TO JOIN</a></div>
+=======
+    <h2 class="detail-header">Looking For {{band.desired_number}} Members</h2>
+    <div id="detail-button"><a href="{%url 'apply_to_band' band_pk=band.pk%}" class="btn">APPLY TO JOIN</a></div>
+>>>>>>> submaster
 
     <div class="container-split">
         <div class="section-split"></div>
@@ -45,15 +54,16 @@
     {% for member in members %}
     <div class="card">  
         <div class="card-background">
-        <div class="card-image">
-            <img src="{{member.artist.photo_url}}" alt="{{member.artist.stage_name}}"/>
-        </div>
-        <div class="card-name">{{ member.artist.stage_name }}</div>
-        <div class="card-description">{{ member.artist.description }}</div>
-        <a href="{% url 'artist_detail' pk=member.artist.pk%}" class="card-button btn">MORE</a>
-        <div class="remove-member">
-            <a href="#" class="remove-member">Remove from Band</a>
-        </div>
+            <div class="card-image">
+                <img src="{{member.artist.photo_url}}" alt="{{member.artist.stage_name}}"/>
+            </div>
+            <div class="card-name">{{ member.artist.stage_name }}</div>
+            <div class="card-description">{{ member.artist.description }}</div>
+            <a href="{% url 'artist_detail' pk=member.artist.pk%}" class="card-button btn">MORE</a>
+            <!-- IF STATEMENT TO LET BAND OWNER REMOVE -->
+            <div class="remove-member">
+                <a href="#" class="remove-member"><i class="material-icons cancel-icon">cancel</i>Remove from Band</a>
+            </div>
         </div>
     </div>
     {% endfor %}
