@@ -28,9 +28,11 @@
 <div class="container container-detail">
     <h2 class="detail-header">{{artist.stage_name}}</h2>
     <p>{{artist.description}}</p>
+    {% if admin %}
     <div class="detail-button">
     <a href="{% url 'artist_edit' pk=artist.pk %}" class="edit-profile btn">Edit Profile</a> 
     </div>
+    {% endif %}
 
     <div class="container-split">
       <div class="section-split"></div>
@@ -50,8 +52,8 @@
       <a href="{% url 'band_detail' pk=band.band.pk%}" class="card-button btn">MORE</a>
       <!-- IF STATEMENT TO LET BAND OWNER REMOVE -->
       {% if admin %}
-      <div class="remove-member">
-        <a href="{%url 'remove_bandmember' band_pk=band.band.pk artist_pk=band.artist.pk %}" class="remove-member"><i class="material-icons cancel-icon">cancel</i>Leave Band</a>
+      <div class="leave-band">
+        <a href="{%url 'remove_bandmember' band_pk=band.band.pk artist_pk=band.artist.pk %}" class="leave-band"><i class="material-icons cancel-icon">cancel</i>Leave Band</a>
         {% endif %}
     </div>
     </div>
@@ -72,15 +74,16 @@
     <h2 class="detail-header">Invites</h2>
 
     {% if admin %}
+    <ul class="invites-list">
     {%for invite in invites %}
-    <li>
+      <li>
             <h3>{{invite.band.name}}</h3>
             <a href="#">Profile</a> |
             <a href="{%url 'add_bandmember' invite_pk=invite.pk  %}">Accept</a> | <a href="{%url 'decline_invite' invite_pk=invite.pk %}">Decline</a> </p>
-        </li>
+      </li>
     {%endfor%}
+    </ul>
 
-   
     <a href="{% url 'artist_delete' pk=artist.pk %}" class="delete-profile"><i class="material-icons cancel-icon">cancel</i>Delete Profile</a>
     {% endif %}
   </div>
