@@ -112,7 +112,7 @@ def band_edit(req, pk):
         form = BandForm(req.POST, instance=band)
         if form.is_valid():
             band = form.save()
-            return redirect('band_detail', pk=pk)
+            return redirect('band_detail.html', pk=pk)
     else:
         form = BandForm(instance=band)
         context = {'form':form, 'header':f"Edit {band.name}"}
@@ -131,7 +131,7 @@ def artist_search(req):
     artists = Artist.objects.all()
     filtered_artists = []
     for artist in artists:
-        if query in artist.stage_name:
+        if query.lower() in artist.stage_name.lower():
             filtered_artists.append(artist)
     data = serializers.serialize('json',filtered_artists)
     return JsonResponse({"artists":data})
@@ -142,7 +142,7 @@ def band_search(req):
     bands = Band.objects.all()
     filtered_bands = []
     for band in bands:
-        if query in band.name:
+        if query.lower() in band.name.lower():
             filtered_bands.append(band)
     data = serializers.serialize('json',filtered_bands)
     return JsonResponse({"bands":data})
