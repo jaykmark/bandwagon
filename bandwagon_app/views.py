@@ -29,10 +29,11 @@ def artist_detail(req,pk):
     admin = False
     user_bands = None
     if req.user:
-        user_artist = Artist.objects.get(user=req.user.id)
-        user_bands = BandMember.objects.filter(artist = user_artist.id)
+        user_artist = Artist.objects.get(user=req.user)
+        user_bands = Band.objects.filter(owner = user_artist.id)
         if pk == user_artist.id:
             admin = True
+    print(user_bands)
     artist = Artist.objects.get(id=pk)
     bands = BandMember.objects.filter(artist=pk)
     context = {"artist":artist,"bands":bands,"user_bands":user_bands, "user_artist":user_artist,"admin":admin}

@@ -7,19 +7,17 @@
     <div class="modal-content">
     <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Choose Band</a>
     <ul id='dropdown1' class='dropdown-content'>
-        <li>test</li>
-        {%for band in user_bands%}
-        <li><a href="{%url 'invite_artist' band_pk=band.band.pk artist_pk=band.artist.pk%}">Ah {{band.band.name}}</a></li>
+        {%for userband in user_bands%}
+        <li><a href="{%url 'invite_artist' band_pk=userband.pk artist_pk=user_artist.pk%}">{{userband.name}}</a></li>
 
         {%endfor%}
     </ul>
-    
-    </div>
+   
     <div class="modal-footer">
       <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
     </div>
   </div>
-
+  </div>
 
 <div class="detail-banner">
     <img src="{{artist.photo_url}}" alt="">
