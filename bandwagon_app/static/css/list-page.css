@@ -17,12 +17,30 @@
 }
 
 /* ---------------- SEARCH BAR ---------------- */
+.search-section {
+  display: flex;
+  justify-content: center; 
+  flex-basis: 70%;
+}
+
 #band-search {
   flex-basis: 70%;
+  display: flex;
+  justify-content: center;
+}
+
+#band-query {
+  width: 300px;
 }
 
 #artist-search {
   flex-basis: 70%;
+  display: flex;
+  justify-content: center;
+}
+
+#artist-query {
+  width: 300px;
 }
 
 /* ---------------- CARD TEMPLATE ---------------- */
@@ -107,3 +125,7 @@
   font-size: 12px;
   transform: translate(60px, -112px)
 }
+/* 
+.search-icon {
+  transform: translate(27px, 14px);
+} */

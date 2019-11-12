@@ -23,8 +23,8 @@
     <img src="{{artist.photo_url}}" alt="">
 </div>
 <!-- Modal Trigger -->
-<a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
-{{admin}}
+<a class="waves-effect waves-light btn modal-trigger" href="#modal1">Invite to Band</a>
+
 <div class="container container-detail">
     <h2 class="detail-header">{{artist.stage_name}}</h2>
     <p>{{artist.description}}</p>
@@ -36,6 +36,13 @@
 
     {% if admin %}
     <a href="{% url 'band_create' %}" class='btn'>CREATE A BAND</a>
+
+    <h2 class="detail-header">Invites</h2>
+
+    {%for invite in artist.invites %}
+    {%if invite.sender == False%}
+    {%endif%}
+    {%endfor%}
     {% endif %}
     
     <ul>
