@@ -81,8 +81,9 @@ def band_detail(req,pk):
         admin = True
     invites =  Invite.objects.filter(band=pk)
     members = BandMember.objects.filter(band=pk)
+    desired_members =  band.desired_number - len(members)
     invites = filter(lambda invite: invite.sender == True,invites)
-    context = {"band":band,"invites":invites,"members":members,"admin":admin}
+    context = {"band":band,"invites":invites,"members":members,"admin":admin,"desired_members":desired_members}
     return render(req,'band_detail.html',context)
 
 @login_required
