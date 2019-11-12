@@ -25,7 +25,7 @@
         {% for invite in invites %}
         <li>
             <h3>{{invite.artist.stage_name}}</h3>
-            <a href="#">Profile</a> |
+            <a href="{%url 'artist_detail' pk=invite.artist.pk%}">Profile</a> |
             <a href="{%url 'add_bandmember' invite_pk=invite.pk  %}">Accept</a> | <a href="{%url 'decline_invite' invite_pk=invite.pk %}">Decline</a> </p>
         </li>
         {%endfor%}

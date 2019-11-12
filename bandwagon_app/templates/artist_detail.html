@@ -49,9 +49,11 @@
       <div class="card-description">{{ band.band.description }}</div>
       <a href="{% url 'band_detail' pk=band.band.pk%}" class="card-button btn">MORE</a>
       <!-- IF STATEMENT TO LET BAND OWNER REMOVE -->
-      <div class="remove-member">
-        <a href="#" class="remove-member"><i class="material-icons cancel-icon">cancel</i>Leave Band</a>
-      </div>
+      {% if admin %}
+      <div class="leave-band">
+        <a href="{%url 'remove_bandmember' band_pk=band.band.pk artist_pk=band.artist.pk %}" class="leave-band"><i class="material-icons cancel-icon">cancel</i>Leave Band</a>
+        {% endif %}
+    </div>
     </div>
   </div>
 {% endfor %}
