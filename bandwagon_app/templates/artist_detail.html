@@ -7,26 +7,24 @@
     <div class="modal-content">
     <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Choose Band</a>
     <ul id='dropdown1' class='dropdown-content'>
-        <li>test</li>
-        {%for band in user_bands%}
-        <li><a href="{%url 'invite_artist' band_pk=band.band.pk artist_pk=band.artist.pk%}">Ah {{band.band.name}}</a></li>
+        {%for userband in user_bands%}
+        <li><a href="{%url 'invite_artist' band_pk=userband.pk artist_pk=user_artist.pk%}">{{userband.name}}</a></li>
 
         {%endfor%}
     </ul>
-    
-    </div>
+   
     <div class="modal-footer">
       <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
     </div>
   </div>
-
+  </div>
 
 <div class="detail-banner">
     <img src="{{artist.photo_url}}" alt="">
 </div>
 <!-- Modal Trigger -->
-<a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
-{{admin}}
+<a class="waves-effect waves-light btn modal-trigger" href="#modal1">Invite to Band</a>
+
 <div class="container container-detail">
     <h2 class="detail-header">{{artist.stage_name}}</h2>
     <p>{{artist.description}}</p>
@@ -38,6 +36,13 @@
 
     {% if admin %}
     <a href="{% url 'band_create' %}" class='btn'>CREATE A BAND</a>
+
+    <h2 class="detail-header">Invites</h2>
+
+    {%for invite in artist.invites %}
+    {%if invite.sender == False%}
+    {%endif%}
+    {%endfor%}
     {% endif %}
     
     <ul>

@@ -27,7 +27,11 @@
         <div class="section-split"></div>
     </div>
     
+<<<<<<< HEAD
+    <h2 class="detail-header">Looking For {{desired_members}} Members</h2>
+=======
     <h2 class="detail-header">Looking For {{band.desired_number}} Members</h2>
+>>>>>>> fd24e5a078eba1dfbe541051d7ae7ee501c8442c
     <div id="detail-apply-button"><a href="{%url 'apply_to_band' band_pk=band.pk%}" class="btn">APPLY TO JOIN</a></div>
 
     <div class="container-split">
@@ -35,6 +39,28 @@
     </div>
 
     <h2 class="detail-header">Line-Up</h2>
+<<<<<<< HEAD
+    
+    <ul>
+        {% for member in members %}
+                <div class="card">  
+                        <div class="card-background">
+                        <div class="card-image">
+                        <img src="{{member.artist.photo_url}}" alt="{{member.artist.stage_name}}"/>
+                        </div>
+                
+                        <div class="card-name">{{ member.artist.stage_name }}</div>
+                        <div class="card-description">{{ member.artist.description }}</div>
+                        <a href="{% url 'artist_detail' pk=member.artist.pk%}" class="card-button btn">MORE</a>
+                    </div>
+                    </div>    
+            {% if admin %}
+                | <a href="{% url 'remove_bandmember' band_pk=band.pk artist_pk=member.artist.pk%}">Remove</a>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+=======
 
     {% for member in members %}
     <div class="card">  
@@ -52,6 +78,7 @@
     </div>
     {% endfor %}
 
+>>>>>>> fd24e5a078eba1dfbe541051d7ae7ee501c8442c
 </div>
 
 {% endblock %}
