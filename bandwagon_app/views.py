@@ -49,7 +49,7 @@ def artist_create(req):
             return redirect('artist_detail', pk=artist.pk)
     else: 
         form = ArtistForm()
-        context = {'form':form, 'header':"Add New Artist"}
+        context = {'form':form, 'header':"Create Artist"}
         return render(req, 'artist_form.html', context)
 
 def artist_edit(req, pk):
@@ -98,7 +98,7 @@ def band_create(req):
             return redirect('band_detail', pk=band.pk)
     else:
         form = BandForm()
-        context = {'form':form, 'header':"Add New Band"}
+        context = {'form':form, 'header':"Create Band"}
         return render(req, 'band_form.html', context)
 
 @login_required

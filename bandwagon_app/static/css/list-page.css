@@ -87,7 +87,8 @@
   align-items: center;
   width: 255px;
   height: 40px;
-  background-color: white;
+  background-color: black;
+  color: white;
   font-size: 24px;
   transform: translate(75px, -160px);
   border: 1px solid black;
@@ -125,7 +126,3 @@
   font-size: 12px;
   transform: translate(60px, -112px)
 }
-/* 
-.search-icon {
-  transform: translate(27px, 14px);
-} */

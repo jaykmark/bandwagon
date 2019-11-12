@@ -28,34 +28,63 @@
 <div class="container container-detail">
     <h2 class="detail-header">{{artist.stage_name}}</h2>
     <p>{{artist.description}}</p>
-    <a href="{% url 'artist_edit' pk=artist.pk %}">Edit Profile</a> 
+    <div class="detail-button">
+    <a href="{% url 'artist_edit' pk=artist.pk %}" class="edit-profile btn">Edit Profile</a> 
+    </div>
 
-    
+    <div class="container-split">
+      <div class="section-split"></div>
+    </div>
 
     <h2 class="detail-header">Bands</h2>
+    <ul>
+      {% for band in bands %}
+      <li>
+          <h3>{{band.name}}</h3><a href="#">Profile</a>     
+          {% if admin %}
+              | <a href="{% url 'remove_bandmember' artist_pk=artist.pk band_pk=band.band.pk%}">Leave Band</a>
+          {% endif %}
+      </li>
+      {% endfor %}
+  </ul>
+
+
+  {% for member in artist.members.all %}
+  <div class="card">  
+    <div class="card-background">
+      <div class="card-image">
+        <img src="{{member.band.photo_url}}" alt="{{member.band.name}}"/>
+      </div>
+      <div class="card-name">{{ member.band.name }}</div>
+      <div class="card-description">{{ member.band.description }}</div>
+      <a href="{% url 'band_detail' pk=member.band.pk%}" class="card-button btn">MORE</a>
+      <!-- IF STATEMENT TO LET BAND OWNER REMOVE -->
+      <div class="remove-member">
+        <a href="#" class="remove-member"><i class="material-icons cancel-icon">cancel</i>Remove from Band</a>
+      </div>
+    </div>
+</div>
+{% endfor %}
 
     {% if admin %}
-    <a href="{% url 'band_create' %}" class='btn'>CREATE A BAND</a>
+    <div class="detail-button">
+      <a href="{% url 'band_create' %}" class='btn'>CREATE A BAND</a>
+    </div>
+
+    <div class="container-split">
+      <div class="section-split"></div>
+    </div>
 
     <h2 class="detail-header">Invites</h2>
 
-    {%for invite in artist.invites %}
-    {%if invite.sender == False%}
-    {%endif%}
-    {%endfor%}
+    {% for invite in artist.invites %}
+    {% if invite.sender == False %}
     {% endif %}
-    
-    <ul>
-        {% for band in bands %}
-        <li>
-            <h3>{{band.band}}</h3><a href="#">Profile</a>     
-            {% if admin %}
-                | <a href="{% url 'remove_bandmember' artist_pk=artist.pk band_pk=band.band.pk%}">Remove</a>
-            {% endif %}
-        </li>
-        {% endfor %}
-    </ul>
-    <a href="{% url 'artist_delete' pk=artist.pk %}">Delete Profile</a>
+    {% endfor %}
+    {% endif %}
+
+    <a href="{% url 'artist_delete' pk=artist.pk %}" class="delete-profile"><i class="material-icons cancel-icon">cancel</i>Delete Profile</a>
+
 </div>
 
 
