@@ -18,11 +18,13 @@
   color: white;
   -webkit-text-stroke: 3px black;
   text-align: center;
+  transform: translate(0px, -30px);
 }
 
 .btn-large {
   font-size: 24px;
   background-color: #800E08;
+  transform: translate(0px, -30px);
 }
 
 .btn-large:hover {

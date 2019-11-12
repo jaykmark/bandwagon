@@ -4,7 +4,9 @@
 <h2 class="form-header">Sign Up</h2>
 <div class="container-form">
   {% if error %}
-    <p style="background-color: firebrick">{{error}}</p>
+  <div class="container-split">
+    <p style="color: firebrick">{{error}}</p>
+  </div>
   {% endif %}
 
   <section class="form-section">
