@@ -126,7 +126,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
-STATIC_ROOT = os.path.jjoin(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [os.path.join(PROJECT_ROOT, 'static')]
 
 django_heroku.settings(locals())
