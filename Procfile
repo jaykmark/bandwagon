@@ -1,1 +1,1 @@
-web: gunicorn bandwagon.wsgi --log-file -
+web: gunicorn bandwagon_project.wsgi --log-file -
