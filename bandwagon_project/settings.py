@@ -54,8 +54,6 @@ MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
-STATIC_FILESSTORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
 ROOT_URLCONF = 'bandwagon_project.urls'
 
 TEMPLATES = [
@@ -127,6 +125,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_DIRS = [os.path.join(PROJECT_ROOT, 'static')]
+STATICFILES_DIR = [os.path.join(PROJECT_ROOT, 'static')]
 
 django_heroku.settings(locals())
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
